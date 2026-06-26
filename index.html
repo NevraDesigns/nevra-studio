@@ -220,11 +220,18 @@ footer{
   font-weight:500;
 }
 
-@media(max-width:600px){
-  nav,footer{padding:16px 20px;}
-  .hero{padding:48px 20px 40px;}
-  .divider{margin:36px 20px;}
-  .tools-section{padding:0 20px 60px;}
+@media(max-width:768px){
+  nav,footer{padding:14px 20px;}
+  .hero{padding:40px 20px 32px;max-width:100%;}
+  .hero h1{font-size:32px;letter-spacing:-0.5px;}
+  .hero-sub{font-size:14px;}
+  .divider{margin:28px 20px;}
+  .tools-section{padding:0 20px 48px;}
+  .tools-grid{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:26px;}
+  .nav-logo{font-size:15px;}
 }
 </style>
 </head>
@@ -264,7 +271,7 @@ footer{
     <a href="english-roadmap.html" class="tool-card">
       <div class="tool-icon">🇬🇧</div>
       <div class="tool-name">İngilizce Yol Haritası</div>
-      <div class="tool-desc">Bu dil de öğren öğren bitmiyor. Rutin de gitsin.</div>
+      <div class="tool-desc">Bu dil de öğren öğren bitmiyor. Rutinde gitsin.</div>
       <div class="tool-tag">✦ Aktif</div>
     </a>
 
