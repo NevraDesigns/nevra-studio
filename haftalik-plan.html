@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haftalık Çalışma Planı</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#f2ede6;--white:#faf7f2;--border:#ddd5c8;--border2:#ccc3b4;
+  --text:#2a2520;--muted:#8c7f72;--muted2:#b5a898;
+  --uiux:#7a6bbf;--uiux-bg:#ece8f5;--uiux-border:#c5bce0;
+  --eng:#3d9e7a;--eng-bg:#e4f2ec;--eng-border:#a8d9c4;
+  --de:#c8872a;--de-bg:#f5ead8;--de-border:#e0c090;
+  --sport:#c05a72;--sport-bg:#f5e0e6;--sport-border:#dca8b5;
+  --free:#4a9ab8;--free-bg:#dceef5;--free-border:#98cce0;
+  --work:#5a5248;--work-bg:#d8d2ca;--work-border:#c0b8b0;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+.summary-bar{background:var(--white);border-bottom:1.5px solid var(--border);padding:11px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.summary-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;white-space:nowrap;}
+.summary-chips{display:flex;gap:7px;flex-wrap:wrap;flex:1;}
+.summary-chip{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:3px;font-size:11px;font-weight:700;border:1.5px solid transparent;white-space:nowrap;cursor:pointer;transition:transform .12s,box-shadow .12s;}
+.summary-chip:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(80,60,40,.12);}
+.sc-uiux{background:var(--uiux-bg);border-color:var(--uiux-border);color:var(--uiux);}
+.sc-eng{background:var(--eng-bg);border-color:var(--eng-border);color:var(--eng);}
+.sc-de{background:var(--de-bg);border-color:var(--de-border);color:var(--de);}
+.sc-sport{background:var(--sport-bg);border-color:var(--sport-border);color:var(--sport);}
+.header{background:var(--white);border-bottom:1.5px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.logo{font-size:16px;font-weight:800;color:var(--text);}
+.legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--muted);}
+.legend-pill{width:18px;height:7px;border-radius:99px;}
+.tip-text{font-size:11px;color:var(--muted2);font-weight:500;background:var(--bg);border:1.5px dashed var(--border2);padding:3px 9px;border-radius:3px;}
+.grid-wrapper{overflow-x:auto;margin:14px;border-radius:4px;border:1.5px solid var(--border);background:var(--white);box-shadow:0 2px 10px rgba(80,60,40,.06);}
+.grid{display:grid;grid-template-columns:52px repeat(7,1fr);min-width:860px;position:relative;}
+.day-header{background:var(--bg);padding:9px 6px;text-align:center;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;border-bottom:1.5px solid var(--border);border-right:1px solid var(--border);position:sticky;top:0;z-index:10;}
+.day-header:last-child{border-right:none;}
+.day-header.corner{background:var(--bg);border-right:1px solid var(--border);}
+.day-header .sub{font-size:10px;font-weight:700;margin-top:2px;min-height:14px;transition:color .2s;}
+.day-header.weekend-col{background:#f5f0eb;}
+.time-label{background:var(--bg);padding:0 5px;font-size:9px;font-weight:700;color:var(--muted2);display:flex;align-items:flex-start;padding-top:5px;border-right:1px solid var(--border);border-bottom:1px solid rgba(221,213,200,.5);user-select:none;}
+.cell{border-right:1px solid var(--border);border-bottom:1px solid rgba(221,213,200,.5);background:var(--white);min-height:36px;position:relative;transition:background .1s;}
+.cell:last-child{border-right:none;}
+.cell.weekend{background:#f5f0eb;}
+.cell.drag-over{background:var(--uiux-bg);outline:2px dashed var(--uiux);outline-offset:-2px;}
+.block{position:absolute;left:3px;right:3px;border-radius:2px;padding:5px 8px;font-size:10.5px;font-weight:700;cursor:grab;z-index:5;overflow:hidden;transition:transform .12s,box-shadow .12s,opacity .1s;user-select:none;border:2px solid transparent;}
+.block:hover{transform:scale(1.025) translateY(-1px);box-shadow:0 6px 18px rgba(0,0,0,.09);z-index:20;}
+.block:active{cursor:grabbing;opacity:.75;}
+.block.dragging{opacity:.25;}
+.block .b-title{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;}
+.block .b-time{font-size:9px;opacity:.65;margin-top:1px;font-weight:600;}
+.block.uiux{background:var(--uiux-bg);border-color:var(--uiux-border);color:var(--uiux);}
+.block.eng{background:var(--eng-bg);border-color:var(--eng-border);color:var(--eng);}
+.block.de{background:var(--de-bg);border-color:var(--de-border);color:var(--de);}
+.block.sport{background:var(--sport-bg);border-color:var(--sport-border);color:var(--sport);}
+.block.free{background:var(--free-bg);border-color:var(--free-border);color:var(--free);}
+.block.work{background:var(--work-bg);border-color:var(--work-border);color:var(--work);cursor:default;}
+.block.work:hover{transform:none;box-shadow:none;}
+.overlay{display:none;position:fixed;inset:0;background:rgba(42,37,32,.32);backdrop-filter:blur(6px);z-index:100;align-items:center;justify-content:center;}
+.overlay.open{display:flex;}
+@keyframes popIn{from{transform:scale(.82);opacity:0;}to{transform:scale(1);opacity:1;}}
+/* STAT */
+.stat-box{background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:24px;width:320px;max-width:94vw;box-shadow:0 8px 32px rgba(80,60,40,.14);animation:popIn .22s cubic-bezier(.34,1.4,.64,1);position:relative;}
+.stat-box h3{font-size:15px;font-weight:800;margin-bottom:6px;}
+.stat-total{font-size:30px;font-weight:800;margin-bottom:18px;line-height:1;}
+.stat-days{display:flex;flex-direction:column;gap:8px;}
+.stat-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);}
+.stat-row:last-child{border-bottom:none;}
+.stat-day-lbl{font-size:12px;font-weight:700;color:var(--muted);}
+.stat-time{font-size:12px;font-weight:800;}
+.stat-time.empty{color:var(--muted2);font-weight:500;}
+.stat-empty{font-size:12px;color:var(--muted2);text-align:center;padding:10px 0;}
+.box-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--muted2);font-size:17px;cursor:pointer;padding:2px 5px;transition:color .1s;}
+.box-close:hover{color:var(--sport);}
+/* EDIT */
+.modal{background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:22px;width:340px;box-shadow:0 8px 32px rgba(80,60,40,.12);animation:popIn .22s cubic-bezier(.34,1.4,.64,1);position:relative;}
+.modal h3{font-size:14px;font-weight:800;margin-bottom:16px;color:var(--text);}
+.form-group{margin-bottom:11px;}
+.form-group label{display:block;font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+.form-group input,.form-group select{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:3px;color:var(--text);padding:7px 11px;font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:border-color .15s;font-weight:500;}
+.form-group input:focus,.form-group select:focus{border-color:var(--uiux);}
+.form-row{display:flex;gap:9px;}
+.form-row .form-group{flex:1;}
+.modal-actions{display:flex;gap:7px;margin-top:16px;}
+.btn{flex:1;padding:9px;border-radius:3px;border:none;font-size:12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:all .15s;}
+.btn:hover{transform:translateY(-1px);}
+.btn-primary{background:var(--uiux);color:#fff;box-shadow:0 2px 8px rgba(100,80,180,.2);}
+.btn-ghost{background:var(--bg);color:var(--muted);border:1.5px solid var(--border);}
+.btn-danger{background:var(--sport-bg);color:var(--sport);border:1.5px solid var(--sport-border);flex:0;padding:9px 13px;}
+/* PICKER */
+.picker{background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:20px;width:380px;max-width:95vw;box-shadow:0 8px 32px rgba(80,60,40,.14);animation:popIn .22s cubic-bezier(.34,1.4,.64,1);position:relative;max-height:90vh;overflow-y:auto;}
+.picker-title{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+.box-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--muted2);font-size:17px;cursor:pointer;padding:2px 5px;transition:color .1s;}
+.box-close:hover{color:var(--sport);}
+.picker-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px;}
+.pcard{display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:3px;border:1.5px solid transparent;cursor:pointer;font-size:12px;font-weight:700;transition:transform .12s,box-shadow .12s;position:relative;}
+.pcard:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(80,60,40,.1);}
+.pcard .pc-icon{font-size:17px;}
+.pcard .pc-del{position:absolute;top:4px;right:6px;background:none;border:none;font-size:11px;color:inherit;opacity:0;cursor:pointer;padding:1px 4px;border-radius:2px;line-height:1;}
+.pcard:hover .pc-del{opacity:.5;}
+.pcard .pc-del:hover{opacity:1!important;background:rgba(0,0,0,.1);}
+.pcard.uiux{background:var(--uiux-bg);border-color:var(--uiux-border);color:var(--uiux);}
+.pcard.eng{background:var(--eng-bg);border-color:var(--eng-border);color:var(--eng);}
+.pcard.de{background:var(--de-bg);border-color:var(--de-border);color:var(--de);}
+.pcard.sport{background:var(--sport-bg);border-color:var(--sport-border);color:var(--sport);}
+.pcard.free{background:var(--free-bg);border-color:var(--free-border);color:var(--free);}
+.pcard-add{display:flex;align-items:center;gap:9px;padding:10px 13px;border-radius:3px;border:1.5px dashed var(--border2);cursor:pointer;font-size:12px;font-weight:700;color:var(--muted);transition:all .15s;}
+.pcard-add:hover{border-color:var(--uiux);color:var(--uiux);background:var(--uiux-bg);}
+.picker-div{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:1px;margin:10px 0;}
+.picker-div::before,.picker-div::after{content:'';flex:1;height:1px;background:var(--border);}
+.picker-custom{display:flex;gap:7px;}
+.picker-custom input{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:3px;color:var(--text);padding:7px 11px;font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;font-weight:600;}
+.picker-custom input:focus{border-color:var(--uiux);}
+.picker-custom input::placeholder{color:var(--muted2);font-weight:400;}
+.picker-custom-btn{background:var(--uiux);color:#fff;border:none;border-radius:3px;font-size:12px;font-weight:700;padding:7px 13px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;white-space:nowrap;}
+/* NEW CAT */
+.newcat-box{background:var(--white);border:1.5px solid var(--border);border-radius:4px;padding:22px;width:360px;max-width:95vw;box-shadow:0 8px 32px rgba(80,60,40,.14);animation:popIn .22s cubic-bezier(.34,1.4,.64,1);position:relative;}
+.newcat-box h3{font-size:14px;font-weight:800;margin-bottom:16px;color:var(--text);}
+.newcat-row{display:flex;gap:8px;margin-bottom:11px;}
+.emoji-btn{width:46px;height:40px;background:var(--bg);border:1.5px solid var(--border);border-radius:3px;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.emoji-btn:hover{border-color:var(--uiux);}
+.newcat-name{flex:1;background:var(--bg);border:1.5px solid var(--border);border-radius:3px;color:var(--text);padding:0 11px;font-size:13px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;font-weight:600;}
+.newcat-name:focus{border-color:var(--uiux);}
+.newcat-name::placeholder{color:var(--muted2);font-weight:400;}
+.icon-picker{background:var(--bg);border:1.5px solid var(--border);border-radius:3px;padding:10px;margin-bottom:11px;display:none;max-height:190px;overflow-y:auto;}
+.icon-picker.open{display:block;}
+.icon-sec{font-size:9px;font-weight:700;color:var(--muted2);text-transform:uppercase;letter-spacing:.5px;margin:8px 0 5px;}
+.icon-sec:first-child{margin-top:0;}
+.icon-grid{display:flex;flex-wrap:wrap;gap:4px;}
+.icon-btn{width:32px;height:32px;border-radius:3px;border:1.5px solid transparent;background:var(--white);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.icon-btn:hover{background:var(--uiux-bg);border-color:var(--uiux-border);}
+.icon-btn.selected{background:var(--uiux-bg);border-color:var(--uiux);}
+.color-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:14px;}
+.clabel{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-right:2px;}
+.cdot{width:22px;height:22px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .1s,border-color .1s;}
+.cdot:hover{transform:scale(1.15);}
+.cdot.selected{border-color:var(--text);transform:scale(1.15);}
+.newcat-actions{display:flex;gap:7px;}
+/* GIF */
+.gif-overlay{display:none;position:fixed;inset:0;background:rgba(42,37,32,.3);backdrop-filter:blur(6px);z-index:200;align-items:center;justify-content:center;}
+.gif-overlay.open{display:flex;}
+.gif-popup{background:var(--white);border:1.5px solid var(--uiux-border);border-radius:4px;padding:20px 18px 16px;text-align:center;max-width:300px;width:90%;box-shadow:0 8px 32px rgba(80,60,40,.15);animation:popIn .3s cubic-bezier(.34,1.4,.64,1);position:relative;}
+.gif-frame{width:100%;border-radius:3px;background:var(--uiux-bg);border:1.5px solid var(--uiux-border);height:100px;display:flex;align-items:center;justify-content:center;}
+.gif-emoji-big{font-size:48px;animation:catBounce .8s ease-in-out infinite;}
+.gp-text{font-size:20px;font-weight:800;color:var(--text);margin:12px 0 10px;line-height:1.3;}
+.gif-next{display:inline-block;background:var(--uiux-bg);border:1.5px solid var(--uiux-border);color:var(--uiux);border-radius:3px;font-size:12px;font-weight:700;padding:7px 16px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;}
+.mascot{position:fixed;bottom:82px;right:18px;width:50px;height:50px;background:var(--uiux-bg);border:1.5px solid var(--uiux-border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:24px;animation:catBounce 2.4s ease-in-out infinite;cursor:pointer;user-select:none;z-index:49;}
+@keyframes catBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes catWiggle{0%,100%{transform:rotate(0);}25%{transform:rotate(-12deg);}75%{transform:rotate(12deg);}}
+.mascot:hover{animation:catWiggle .4s ease-in-out;}
+.fab{position:fixed;bottom:22px;right:22px;width:48px;height:48px;border-radius:50%;background:var(--uiux);border:none;color:#fff;font-size:24px;cursor:pointer;box-shadow:0 4px 16px rgba(100,80,160,.25);z-index:50;transition:transform .15s;display:flex;align-items:center;justify-content:center;}
+.fab:hover{transform:scale(1.12) rotate(8deg);}
+#toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#2a2520;color:#faf7f2;font-size:12px;font-weight:700;padding:8px 18px;border-radius:3px;z-index:999;opacity:0;transition:opacity .2s;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<div class="summary-bar">
+  <div class="summary-title">✨ Bu hafta</div>
+  <div class="summary-chips" id="summaryChips"></div>
+</div>
+<div class="header">
+  <div class="logo">📅 Haftalık Plan</div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-pill" style="background:#c5bce0"></div>UI/UX</div>
+    <div class="legend-item"><div class="legend-pill" style="background:#a8d9c4"></div>İngilizce</div>
+    <div class="legend-item"><div class="legend-pill" style="background:#e0c090"></div>Almanca</div>
+    <div class="legend-item"><div class="legend-pill" style="background:#dca8b5"></div>Spor</div>
+    <div class="legend-item"><div class="legend-pill" style="background:#98cce0"></div>Serbest</div>
+  </div>
+  <div class="tip-text">🖱️ Sürükle · ✏️ Çift tıkla · ➕ Ekle</div>
+</div>
+<div class="grid-wrapper"><div class="grid" id="grid"></div></div>
+<div class="mascot" onclick="showGif()">🐱</div>
+<div id="toast"></div>
+
+<!-- STAT POPUP -->
+<div class="overlay" id="statOv">
+  <div class="stat-box">
+    <button class="box-close" onclick="closeStat()">✕</button>
+    <h3 id="statTitle"></h3>
+    <div class="stat-total" id="statTotal"></div>
+    <div class="stat-days" id="statDays"></div>
+  </div>
+</div>
+
+<!-- GIF -->
+<div class="gif-overlay" id="gifOv">
+  <div class="gif-popup">
+    <button class="box-close" onclick="closeGif()">✕</button>
+    <div class="gif-frame" id="gifFrame"><div class="gif-emoji-big" id="gifEmoji">🐱</div></div>
+    <div class="gp-text" id="gifText">Motivasyon!</div>
+    <button class="gif-next" onclick="showGif()">🔀 Başka bir tane!</button>
+  </div>
+</div>
+
+<!-- EDIT -->
+<div class="overlay" id="editOv">
+  <div class="modal">
+    <h3 id="editTitle">✏️ Blok Düzenle</h3>
+    <div class="form-group"><label>Başlık</label><input type="text" id="fTitle"></div>
+    <div class="form-row">
+      <div class="form-group"><label>Gün</label>
+        <select id="fDay">
+          <option value="0">Pazartesi</option><option value="1">Salı</option>
+          <option value="2">Çarşamba</option><option value="3">Perşembe</option>
+          <option value="4">Cuma</option><option value="5">Cumartesi</option><option value="6">Pazar</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Kategori</label><select id="fType"></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Başlangıç</label><input type="time" id="fStart"></div>
+      <div class="form-group"><label>Bitiş</label><input type="time" id="fEnd"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeEdit()">İptal</button>
+      <button class="btn btn-danger" id="btnDel" onclick="deleteBlock()">🗑️</button>
+      <button class="btn btn-primary" onclick="saveBlock()">Kaydet ✓</button>
+    </div>
+  </div>
+</div>
+
+<!-- PICKER -->
+<div class="overlay" id="pickerOv">
+  <div class="picker">
+    <button class="box-close" onclick="closePicker()">✕</button>
+    <div class="picker-title">Ne eklemek istiyorsun?</div>
+    <div class="picker-grid" id="pickerGrid"></div>
+    <div class="picker-div">ya da tek seferlik etkinlik</div>
+    <div class="picker-custom">
+      <input type="text" id="customName" placeholder="Etkinlik adı... (ör. Doktor randevusu 🏥)">
+      <button class="picker-custom-btn" onclick="pickCustom()">Ekle →</button>
+    </div>
+  </div>
+</div>
+
+<!-- NEW CAT -->
+<div class="overlay" id="newcatOv">
+  <div class="newcat-box">
+    <button class="box-close" onclick="closeNewCat()">✕</button>
+    <h3>➕ Yeni Kategori</h3>
+    <div class="newcat-row">
+      <button class="emoji-btn" id="emojiBtn" onclick="toggleIcons()">🌿</button>
+      <input class="newcat-name" type="text" id="newcatName" placeholder="Kategori adı...">
+    </div>
+    <div class="icon-picker" id="iconPicker"></div>
+    <div class="color-row">
+      <span class="clabel">Renk:</span>
+      <div class="cdot selected" style="background:#b8a0e8" data-c="#b8a0e8" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#80c4a8" data-c="#80c4a8" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#e0a878" data-c="#e0a878" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#e89098" data-c="#e89098" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#78b8d8" data-c="#78b8d8" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#a8c878" data-c="#a8c878" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#d8a8d0" data-c="#d8a8d0" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#c8b890" data-c="#c8b890" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#9abcd0" data-c="#9abcd0" onclick="onColorClick(this)"></div>
+      <div class="cdot" style="background:#d4b8a0" data-c="#d4b8a0" onclick="onColorClick(this)"></div>
+    </div>
+    <div class="newcat-actions">
+      <button class="btn btn-ghost" onclick="closeNewCat()">İptal</button>
+      <button class="btn btn-primary" onclick="saveNewCat()">Kaydet ✓</button>
+    </div>
+  </div>
+</div>
+
+<button class="fab" onclick="openPicker()">＋</button>
+
+<script>
+const DAYS=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
+const DAY_S=['Pzt','Sal','Çar','Per','Cum','Cmt','Paz'];
+const SH=6,EH=23,SLH=36;
+const SK='haftalik-v3';
+
+const ICONS={
+  'Tasarım':['🎨','✏️','🖌️','🖼️','💡','🎭','📐','💎','🖥️','📱','🔷','🌈'],
+  'Eğitim & Dil':['📚','🇬🇧','🇩🇪','🇫🇷','🇯🇵','📖','✍️','🎓','🧠','📝','💬','🗣️'],
+  'Spor & Sağlık':['🏋️','🧘','🚴','🏃','⚽','🎾','🏊','🥗','💪','🧗','🤸','🏅'],
+  'Müzik':['🎸','🎵','🎧','🎤','🎹','🎺','🎻','🥁','🎬','🎮','🎲','♟️'],
+  'İş':['💼','📊','📈','🗂️','✅','🎯','⏰','📅','🔑','💰','📌','🚀'],
+  'Kişisel':['🌿','☕','🍵','🌙','⭐','🦋','🌺','🐱','🌱','🏡','📷','✈️'],
+};
+
+let selIcon='🌿', pickedColor='#b8a0e8';
+
+const BC={
+  uiux:{emoji:'🎨',label:'UI/UX',bg:'var(--uiux-bg)',border:'var(--uiux-border)',color:'var(--uiux)',sc:'sc-uiux',base:true},
+  eng:{emoji:'🇬🇧',label:'İngilizce',bg:'var(--eng-bg)',border:'var(--eng-border)',color:'var(--eng)',sc:'sc-eng',base:true},
+  de:{emoji:'🇩🇪',label:'Almanca',bg:'var(--de-bg)',border:'var(--de-border)',color:'var(--de)',sc:'sc-de',base:true},
+  sport:{emoji:'🏋️',label:'Spor',bg:'var(--sport-bg)',border:'var(--sport-border)',color:'var(--sport)',sc:'sc-sport',base:true},
+  free:{emoji:'🎉',label:'Serbest',bg:'var(--free-bg)',border:'var(--free-border)',color:'var(--free)',sc:null,base:true},
+  work:{emoji:'💼',label:'İş',bg:'var(--work-bg)',border:'var(--work-border)',color:'var(--work)',sc:null,base:true},
+};
+
+const DB=[
+  ...([0,1,2,3,4].map(d=>({id:`wk${d}`,day:d,start:'08:00',end:'18:00',title:'💼 İş',type:'work'}))),
+  ...([0,1,2,3,4].map(d=>({id:`em${d}`,day:d,start:'06:45',end:'07:00',title:'🇬🇧 İng Kitap',type:'eng'}))),
+  {id:'um',day:0,start:'19:00',end:'20:30',title:'🎨 UI/UX — Figma + Teori',type:'uiux'},
+  {id:'dm',day:0,start:'20:30',end:'21:00',title:'🇩🇪 Almanca Tekrar',type:'de'},
+  {id:'st',day:1,start:'19:00',end:'20:45',title:'🏋️ Spor',type:'sport'},
+  {id:'et',day:1,start:'20:45',end:'21:30',title:'🇬🇧 İng Kurs (Rupert Walsh)',type:'eng'},
+  {id:'uw',day:2,start:'19:00',end:'20:30',title:'🎨 UI/UX — Proje Pratiği',type:'uiux'},
+  {id:'dw',day:2,start:'20:30',end:'21:00',title:'🇩🇪 Almanca',type:'de'},
+  {id:'sp',day:3,start:'19:00',end:'20:45',title:'🏋️ Spor',type:'sport'},
+  {id:'ep',day:3,start:'20:45',end:'21:30',title:'🇬🇧 İng Kurs (Rupert Walsh)',type:'eng'},
+  {id:'uf',day:4,start:'19:00',end:'20:00',title:'🎨 UI/UX — Hafta Değerlendirme',type:'uiux'},
+  {id:'ff',day:4,start:'20:00',end:'21:30',title:'🎉 Serbest / Sosyal',type:'free'},
+  {id:'ss',day:5,start:'09:30',end:'11:15',title:'🏋️ Spor',type:'sport'},
+  {id:'us',day:5,start:'11:30',end:'13:30',title:'🎨 UI/UX — Derin Çalışma',type:'uiux'},
+  {id:'es',day:5,start:'14:00',end:'15:00',title:'🇬🇧 İng Kurs + Murphy Tekrar',type:'eng'},
+  {id:'ds',day:5,start:'15:00',end:'16:00',title:'🇩🇪 Almanca Haftalık Tekrar',type:'de'},
+  {id:'fs',day:5,start:'17:00',end:'22:00',title:'🎉 Sosyal / Serbest',type:'free'},
+  {id:'un',day:6,start:'10:00',end:'11:30',title:'🎨 UI/UX — Case Study',type:'uiux'},
+  {id:'dn',day:6,start:'11:30',end:'12:00',title:'🇩🇪 Almanca',type:'de'},
+  {id:'fn',day:6,start:'13:00',end:'22:00',title:'🎉 Dinlenme / Serbest',type:'free'},
+];
+
+let CAT=JSON.parse(JSON.stringify(BC));
+let blocks=[...DB];
+let editId=null,dragB=null,dragOff=0;
+let hist=[],hIdx=-1;
+
+// STORAGE
+function save(){
+  try{
+    const cc={};
+    Object.entries(CAT).forEach(([id,m])=>{if(!BC[id])cc[id]=m;});
+    localStorage.setItem(SK,JSON.stringify({blocks,cc}));
+  }catch(e){}
+}
+function load(){
+  try{
+    const raw=localStorage.getItem(SK);if(!raw)return;
+    const d=JSON.parse(raw);
+    if(d.blocks)blocks=d.blocks;
+    if(d.cc)Object.entries(d.cc).forEach(([id,m])=>{CAT[id]=m;injectStyle(id,m);});
+  }catch(e){}
+}
+function injectStyle(id,m){
+  document.querySelector(`style[data-cat="${id}"]`)?.remove();
+  const s=document.createElement('style');s.dataset.cat=id;
+  s.textContent=`.block.${id}{background:${m.bg};border-color:${m.border};color:${m.color};}`;
+  document.head.appendChild(s);
+}
+
+const toM=t=>{const[h,m]=t.split(':').map(Number);return h*60+m;};
+const toSl=t=>{const[h,m]=t.split(':').map(Number);return(h-SH)*2+(m>=30?1:0);};
+const frSl=s=>{const tot=SH*60+s*30;return`${String(Math.floor(tot/60)).padStart(2,'0')}:${String(tot%60).padStart(2,'0')}`;};
+const scnt=()=>(EH-SH)*2;
+const dur=b=>Math.max(0,toM(b.end)-toM(b.start));
+const fmt=m=>{const h=Math.floor(m/60),r=m%60;return h&&r?`${h}sa ${r}dk`:h?`${h} saat`:`${r} dk`;};
+
+function savH(){const s=JSON.parse(JSON.stringify(blocks));hist=hist.slice(0,hIdx+1);hist.push(s);if(hist.length>50)hist.shift();hIdx=hist.length-1;}
+function rebld(){document.querySelectorAll('.block').forEach(e=>e.remove());blocks.forEach(renderB);updSummary();updDayH();}
+function undo(){if(hIdx<=0)return;hIdx--;blocks=JSON.parse(JSON.stringify(hist[hIdx]));rebld();save();}
+function redo(){if(hIdx>=hist.length-1)return;hIdx++;blocks=JSON.parse(JSON.stringify(hist[hIdx]));rebld();save();}
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='z'&&!e.shiftKey){e.preventDefault();undo();}
+  if((e.ctrlKey||e.metaKey)&&(e.key==='y'||(e.key==='z'&&e.shiftKey))){e.preventDefault();redo();}
+});
+
+// STAT
+function openStat(type){
+  const m=CAT[type];if(!m)return;
+  const dm=Array(7).fill(0);let tot=0;
+  blocks.forEach(b=>{if(b.type!==type)return;const mn=dur(b);dm[b.day]+=mn;tot+=mn;});
+  document.getElementById('statTitle').textContent=m.emoji+' '+m.label;
+  document.getElementById('statTitle').style.color=m.color||'var(--text)';
+  document.getElementById('statTotal').textContent=fmt(tot);
+  document.getElementById('statTotal').style.color=m.color||'var(--text)';
+  const mx=Math.max(...dm,1);
+  const con=document.getElementById('statDays');con.innerHTML='';
+  // resolve CSS variable to actual color
+  let clr=m.color||'#7a6bbf';
+  if(clr.startsWith('var(')){
+    const vn=clr.slice(4,-1).trim();
+    clr=getComputedStyle(document.documentElement).getPropertyValue(vn).trim()||'#7a6bbf';
+  }
+  DAYS.forEach((day,i)=>{
+    const row=document.createElement('div');row.className='stat-row';
+    if(dm[i]>0){
+      row.innerHTML=`<div class="stat-day-lbl">${day}</div><div class="stat-time" style="color:${clr}">${fmt(dm[i])}</div>`;
+    } else {
+      row.innerHTML=`<div class="stat-day-lbl">${day}</div><div class="stat-time empty">—</div>`;
+    }
+    con.appendChild(row);
+  });
+  document.getElementById('statOv').classList.add('open');
+}
+function closeStat(){document.getElementById('statOv').classList.remove('open');}
+document.getElementById('statOv').addEventListener('click',e=>{if(e.target===document.getElementById('statOv'))closeStat();});
+
+function updDayH(){
+  const cols={uiux:'#7a6bbf',eng:'#3d9e7a',de:'#c8872a',sport:'#c05a72',free:'#4a9ab8'};
+  for(let d=0;d<7;d++){
+    const el=document.getElementById('ds'+d);if(!el)continue;
+    const t={};
+    blocks.forEach(b=>{if(b.day!==d||['work','free'].includes(b.type))return;t[b.type]=(t[b.type]||0)+dur(b);});
+    let top=null,tm=0;Object.entries(t).forEach(([k,v])=>{if(v>tm){tm=v;top=k;}});
+    if(!top){el.textContent='';el.style.color='';continue;}
+    const c=CAT[top];el.textContent=c?c.emoji+' '+c.label:'';
+    el.style.color=cols[top]||pickedColor;
+  }
+}
+
+function updSummary(){
+  const t={};
+  blocks.forEach(b=>{if(['work','free'].includes(b.type))return;t[b.type]=(t[b.type]||0)+dur(b);});
+  const c=document.getElementById('summaryChips');c.innerHTML='';
+  Object.entries(t).forEach(([type,mins])=>{
+    const m=CAT[type];if(!m)return;
+    const el=document.createElement('div');
+    if(m.sc){el.className='summary-chip '+m.sc;}
+    else{el.className='summary-chip';el.style.cssText=`background:${m.bg};border:1.5px solid ${m.border};color:${m.color};`;}
+    el.innerHTML=`${m.emoji} ${m.label} <strong>${fmt(mins)}</strong>`;
+    el.title='Günlük dağılımı gör 👆';
+    el.addEventListener('click',()=>openStat(type));
+    c.appendChild(el);
+  });
+}
+
+function buildGrid(){
+  const g=document.getElementById('grid');g.innerHTML='';
+  const tot=scnt();
+  const co=document.createElement('div');co.className='day-header corner';g.appendChild(co);
+  DAYS.forEach((d,i)=>{
+    const h=document.createElement('div');
+    h.className='day-header'+(i>=5?' weekend-col':'');
+    h.innerHTML=`${d}<div class="sub" id="ds${i}"></div>`;
+    g.appendChild(h);
+  });
+  for(let s=0;s<tot;s++){
+    const l=document.createElement('div');l.className='time-label';
+    if(s%2===0)l.textContent=frSl(s);g.appendChild(l);
+    for(let d=0;d<7;d++){
+      const cell=document.createElement('div');
+      cell.className='cell'+(d>=5?' weekend':'');
+      cell.dataset.day=d;cell.dataset.slot=s;
+      cell.addEventListener('dragover',e=>{e.preventDefault();cell.classList.add('drag-over');});
+      cell.addEventListener('dragleave',()=>cell.classList.remove('drag-over'));
+      cell.addEventListener('drop',onDrop);
+      g.appendChild(cell);
+    }
+  }
+  blocks.forEach(renderB);updSummary();updDayH();
+}
+
+function renderB(b){
+  document.getElementById('b-'+b.id)?.remove();
+  const ss=toSl(b.start),es=toSl(b.end),span=Math.max(1,es-ss);
+  const cell=document.querySelector(`.cell[data-day="${b.day}"][data-slot="${ss}"]`);if(!cell)return;
+  const el=document.createElement('div');
+  el.id='b-'+b.id;el.className='block '+b.type;
+  el.draggable=b.type!=='work';
+  el.style.top='2px';el.style.height=(span*SLH-4)+'px';
+  const m=CAT[b.type];
+  if(m&&!BC[b.type]){el.style.background=m.bg;el.style.borderColor=m.border;el.style.color=m.color;}
+  el.innerHTML=`<div class="b-title">${b.title}</div><div class="b-time">${b.start}–${b.end}</div>`;
+  el.addEventListener('dblclick',()=>openEdit(b.id));
+  el.addEventListener('dragstart',e=>{
+    if(b.type==='work')return;
+    dragB=b;dragOff=Math.floor((e.clientY-el.getBoundingClientRect().top)/SLH);
+    setTimeout(()=>el.classList.add('dragging'),0);e.dataTransfer.effectAllowed='move';
+  });
+  el.addEventListener('dragend',()=>{el.classList.remove('dragging');dragB=null;});
+  cell.appendChild(el);
+}
+
+function onDrop(e){
+  e.preventDefault();this.classList.remove('drag-over');if(!dragB)return;
+  const nd=parseInt(this.dataset.day),ns=Math.max(0,parseInt(this.dataset.slot)-dragOff);
+  const d=toSl(dragB.end)-toSl(dragB.start);
+  if(ns+d>scnt())return;
+  dragB.day=nd;dragB.start=frSl(ns);dragB.end=frSl(ns+d);
+  savH();renderB(dragB);updSummary();updDayH();save();
+}
+
+function rebldSel(){
+  const s=document.getElementById('fType');s.innerHTML='';
+  Object.entries(CAT).forEach(([id,m])=>{const o=document.createElement('option');o.value=id;o.textContent=m.emoji+' '+m.label;s.appendChild(o);});
+}
+function openEdit(id){
+  const b=blocks.find(x=>x.id===id);if(!b)return;
+  editId=id;
+  document.getElementById('editTitle').textContent='✏️ Blok Düzenle';
+  document.getElementById('fTitle').value=b.title;
+  document.getElementById('fDay').value=b.day;
+  rebldSel();document.getElementById('fType').value=b.type;
+  document.getElementById('fStart').value=b.start;
+  document.getElementById('fEnd').value=b.end;
+  document.getElementById('btnDel').style.display='block';
+  document.getElementById('editOv').classList.add('open');
+}
+function closeEdit(){document.getElementById('editOv').classList.remove('open');}
+function saveBlock(){
+  const title=document.getElementById('fTitle').value.trim();
+  const day=parseInt(document.getElementById('fDay').value);
+  const type=document.getElementById('fType').value;
+  const start=document.getElementById('fStart').value;
+  const end=document.getElementById('fEnd').value;
+  if(!title||!start||!end)return;
+  if(editId){const b=blocks.find(x=>x.id===editId);Object.assign(b,{title,day,type,start,end});renderB(b);}
+  else{const nb={id:'c'+Date.now(),title,day,type,start,end};blocks.push(nb);renderB(nb);}
+  savH();updSummary();updDayH();save();closeEdit();
+}
+function deleteBlock(){
+  if(!editId)return;
+  blocks=blocks.filter(x=>x.id!==editId);
+  document.getElementById('b-'+editId)?.remove();
+  savH();updSummary();updDayH();save();closeEdit();
+}
+document.getElementById('editOv').addEventListener('click',e=>{if(e.target===document.getElementById('editOv'))closeEdit();});
+
+function buildPGrid(){
+  const g=document.getElementById('pickerGrid');g.innerHTML='';
+  Object.entries(CAT).forEach(([id,m])=>{
+    if(id==='work')return;
+    const c=document.createElement('div');
+    c.className='pcard '+(BC[id]?id:'');
+    if(!BC[id])c.style.cssText=`background:${m.bg};border-color:${m.border};color:${m.color};`;
+    c.innerHTML=`<span class="pc-icon">${m.emoji}</span>${m.label}`;
+    if(!m.base){
+      const d=document.createElement('button');d.className='pc-del';d.textContent='✕';
+      d.addEventListener('click',ev=>{ev.stopPropagation();ev.preventDefault();delCat(id);});
+      c.appendChild(d);
+    }
+    c.addEventListener('click',()=>pickCat(id));
+    g.appendChild(c);
+  });
+  const add=document.createElement('div');add.className='pcard-add';
+  add.innerHTML='<span style="font-size:17px">➕</span> Kategori Ekle';
+  add.onclick=openNewCat;g.appendChild(add);
+}
+function openPicker(){buildPGrid();document.getElementById('customName').value='';document.getElementById('pickerOv').classList.add('open');}
+function closePicker(){document.getElementById('pickerOv').classList.remove('open');}
+document.getElementById('pickerOv').addEventListener('click',e=>{if(e.target===document.getElementById('pickerOv'))closePicker();});
+function pickCat(type){
+  closePicker();editId=null;const m=CAT[type];
+  document.getElementById('editTitle').textContent=m.emoji+' '+m.label+' Ekle';
+  document.getElementById('fTitle').value=m.emoji+' '+m.label;
+  document.getElementById('fDay').value=0;
+  rebldSel();document.getElementById('fType').value=type;
+  document.getElementById('fStart').value='09:00';document.getElementById('fEnd').value='10:00';
+  document.getElementById('btnDel').style.display='none';
+  document.getElementById('editOv').classList.add('open');
+}
+function pickCustom(){
+  const n=document.getElementById('customName').value.trim();if(!n)return;
+  closePicker();editId=null;
+  document.getElementById('editTitle').textContent='✨ Özel Etkinlik';
+  document.getElementById('fTitle').value=n;
+  document.getElementById('fDay').value=0;
+  rebldSel();document.getElementById('fType').value='free';
+  document.getElementById('fStart').value='09:00';document.getElementById('fEnd').value='10:00';
+  document.getElementById('btnDel').style.display='none';
+  document.getElementById('editOv').classList.add('open');
+}
+document.getElementById('customName').addEventListener('keydown',e=>{if(e.key==='Enter')pickCustom();});
+function delCat(id){
+  if(BC[id])return;
+  blocks.forEach(b=>{if(b.type===id)b.type='free';});
+  document.querySelector(`style[data-cat="${id}"]`)?.remove();
+  delete CAT[id];rebld();buildPGrid();save();toast('Kategori silindi ✓');
+}
+
+function buildIcons(){
+  const p=document.getElementById('iconPicker');p.innerHTML='';
+  Object.entries(ICONS).forEach(([s,icons])=>{
+    const t=document.createElement('div');t.className='icon-sec';t.textContent=s;p.appendChild(t);
+    const g=document.createElement('div');g.className='icon-grid';
+    icons.forEach(ic=>{
+      const b=document.createElement('button');b.className='icon-btn'+(ic===selIcon?' selected':'');
+      b.textContent=ic;
+      b.onclick=()=>{selIcon=ic;document.getElementById('emojiBtn').textContent=ic;
+        document.querySelectorAll('.icon-btn').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');};
+      g.appendChild(b);
+    });
+    p.appendChild(g);
+  });
+}
+function openNewCat(){
+  closePicker();selIcon='🌿';pickedColor='#b8a0e8';
+  document.getElementById('emojiBtn').textContent='🌿';
+  document.getElementById('newcatName').value='';
+  document.getElementById('iconPicker').classList.remove('open');
+  document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('selected'));
+  document.querySelector('.cdot[data-c="#b8a0e8"]').classList.add('selected');
+  buildIcons();document.getElementById('newcatOv').classList.add('open');
+}
+function closeNewCat(){document.getElementById('newcatOv').classList.remove('open');}
+document.getElementById('newcatOv').addEventListener('click',e=>{if(e.target===document.getElementById('newcatOv'))closeNewCat();});
+function toggleIcons(){document.getElementById('iconPicker').classList.toggle('open');}
+function onColorClick(el){document.querySelectorAll('.cdot').forEach(d=>d.classList.remove('selected'));el.classList.add('selected');pickedColor=el.dataset.c;}
+function h2r(hex,a){const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return`rgba(${r},${g},${b},${a})`;}
+function saveNewCat(){
+  const name=document.getElementById('newcatName').value.trim();if(!name){document.getElementById('newcatName').focus();return;}
+  const id='cat'+Date.now();
+  const bg=h2r(pickedColor,.15),border=h2r(pickedColor,.4);
+  CAT[id]={emoji:selIcon,label:name,bg,border,color:pickedColor,sc:null,base:false};
+  injectStyle(id,CAT[id]);save();closeNewCat();openPicker();
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.style.opacity='1';
+  clearTimeout(t._t);t._t=setTimeout(()=>t.style.opacity='0',2000);
+}
+
+const GIFS=[
+  {e:'🐱',t:'Sen yapabilirsin!',bg:'#ece8f5'},{e:'🚀',t:'Hedefe doğru gidiyorsun!',bg:'#e4f2ec'},
+  {e:'✨',t:'Bugün harika bir gün!',bg:'#f5ead8'},{e:'🎨',t:'Tasarım beyni devrede!',bg:'#ece8f5'},
+  {e:'🦄',t:'Unicorn designer yolunda!',bg:'#ece8f5'},{e:'🎯',t:'Odaklan, başarı yakın!',bg:'#e4f2ec'},
+  {e:'🌈',t:'Her gün biraz daha iyi!',bg:'#f5ead8'},{e:'🐝',t:'Çalışkan arı modu: ON!',bg:'#f5ead8'},
+  {e:'🏆',t:'Şampiyon zihniyeti!',bg:'#e4f2ec'},{e:'🦋',t:'Her gün biraz daha büyüyorsun!',bg:'#ece8f5'},
+  {e:'💎',t:'Elmas baskı altında oluşur!',bg:'#ece8f5'},{e:'🔥',t:'Bu enerji kırılmaz!',bg:'#f5e0e6'},
+  {e:'🌺',t:'Büyümek zaman alır, devam et!',bg:'#f5e0e6'},{e:'🍀',t:'Şans hazırlananı sever!',bg:'#e4f2ec'},
+  {e:'⚡',t:'Enerji dolup taşıyor!',bg:'#f5ead8'},{e:'🌍',t:'Dünya seni bekliyor!',bg:'#dceef5'},
+  {e:'🐸',t:'Sıçramak için hazırlanıyorsun!',bg:'#e4f2ec'},{e:'🦁',t:'İçindeki aslanı uyandır!',bg:'#f5ead8'},
+  {e:'🌵',t:'Zorluklara rağmen büyüyorsun!',bg:'#e4f2ec'},{e:'🎠',t:'Yolculuk hedef kadar güzel!',bg:'#ece8f5'},
+];
+let lastG=-1;
+function showGif(){
+  let i;do{i=Math.floor(Math.random()*GIFS.length);}while(i===lastG);lastG=i;
+  const g=GIFS[i];
+  document.getElementById('gifEmoji').textContent=g.e;
+  document.getElementById('gifText').textContent=g.t;
+  document.getElementById('gifFrame').style.background=g.bg;
+  document.getElementById('gifOv').classList.add('open');
+}
+function closeGif(){document.getElementById('gifOv').classList.remove('open');}
+document.getElementById('gifOv').addEventListener('click',e=>{if(e.target===document.getElementById('gifOv'))closeGif();});
+
+load();buildGrid();savH();
+</script>
+</body>
+</html>

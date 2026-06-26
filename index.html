@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nevra Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --bg:#f2ede6;
+  --white:#faf7f2;
+  --border:#ddd5c8;
+  --text:#2a2520;
+  --muted:#8c7f72;
+  --muted2:#b5a898;
+  --accent:#7a6bbf;
+  --accent-bg:#ece8f5;
+  --accent-border:#c5bce0;
+}
+
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* NAV */
+nav{
+  padding:18px 40px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1.5px solid var(--border);
+  background:var(--white);
+}
+
+.nav-logo{
+  font-family:'Syne',sans-serif;
+  font-size:17px;
+  font-weight:800;
+  color:var(--text);
+  letter-spacing:-0.3px;
+}
+
+.nav-logo span{color:var(--accent);}
+
+.nav-tag{
+  font-size:10px;
+  font-weight:700;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  border:1.5px solid var(--border);
+  padding:3px 10px;
+  border-radius:3px;
+}
+
+/* HERO */
+.hero{
+  padding:72px 40px 56px;
+  max-width:680px;
+}
+
+.hero-eyebrow{
+  font-size:11px;
+  font-weight:700;
+  color:var(--accent);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(36px,5vw,58px);
+  font-weight:800;
+  line-height:1.08;
+  letter-spacing:-1.5px;
+  color:var(--text);
+  margin-bottom:20px;
+}
+
+.hero h1 em{
+  font-style:normal;
+  color:var(--accent);
+}
+
+.hero-sub{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:480px;
+}
+
+/* DIVIDER */
+.divider{
+  width:40px;
+  height:2px;
+  background:var(--border);
+  margin:48px 40px;
+}
+
+/* TOOLS */
+.tools-section{
+  padding:0 40px 80px;
+}
+
+.section-label{
+  font-size:10px;
+  font-weight:800;
+  color:var(--muted2);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;
+}
+
+.tool-card{
+  background:var(--white);
+  border:1.5px solid var(--border);
+  border-radius:4px;
+  padding:22px 24px;
+  text-decoration:none;
+  color:var(--text);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:border-color .15s, transform .15s, box-shadow .15s;
+  position:relative;
+  overflow:hidden;
+}
+
+.tool-card:hover{
+  border-color:var(--accent-border);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(122,107,191,.1);
+}
+
+.tool-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--accent);
+  opacity:0;
+  transition:opacity .15s;
+}
+
+.tool-card:hover::before{opacity:1;}
+
+.tool-icon{font-size:26px;line-height:1;}
+
+.tool-name{
+  font-family:'Syne',sans-serif;
+  font-size:16px;
+  font-weight:800;
+  letter-spacing:-0.3px;
+}
+
+.tool-desc{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.tool-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  font-size:10px;
+  font-weight:700;
+  color:var(--accent);
+  background:var(--accent-bg);
+  border:1.5px solid var(--accent-border);
+  padding:3px 9px;
+  border-radius:3px;
+  width:fit-content;
+  margin-top:2px;
+}
+
+.tool-card.coming{
+  opacity:.55;
+  cursor:default;
+  pointer-events:none;
+}
+
+.coming-tag{
+  font-size:10px;
+  font-weight:700;
+  color:var(--muted2);
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  padding:3px 9px;
+  border-radius:3px;
+  width:fit-content;
+  margin-top:2px;
+}
+
+/* FOOTER */
+footer{
+  margin-top:auto;
+  padding:20px 40px;
+  border-top:1.5px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:11px;
+  color:var(--muted2);
+  font-weight:500;
+}
+
+@media(max-width:600px){
+  nav,footer{padding:16px 20px;}
+  .hero{padding:48px 20px 40px;}
+  .divider{margin:36px 20px;}
+  .tools-section{padding:0 20px 60px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Nevra <span>Studio</span></div>
+  <div class="nav-tag">Araçlar & Planlar</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eyebrow">Nevra Designs · nevra-studio</div>
+  <h1>Çalışmayı<br><em>görünür</em> yapmak<br>için araçlar.</h1>
+  <p class="hero-sub">UI/UX yolculuğu, dil öğrenme ve haftalık rutini bir arada tutan kişisel araç seti.</p>
+</div>
+
+<div class="divider"></div>
+
+<div class="tools-section">
+  <div class="section-label">Araçlar</div>
+  <div class="tools-grid">
+
+    <a href="haftalik-plan.html" class="tool-card">
+      <div class="tool-icon">📅</div>
+      <div class="tool-name">Haftalık Plan</div>
+      <div class="tool-desc">Sürükle-bırak takvim. Kategorilere göre harcanan süreyi takip et, bloklarını düzenle.</div>
+      <div class="tool-tag">✦ Aktif</div>
+    </a>
+
+    <a href="uiux-roadmap.html" class="tool-card">
+      <div class="tool-icon">🎨</div>
+      <div class="tool-name">UI/UX Yol Haritası</div>
+      <div class="tool-desc">3 aylık interaktif plan. Figma'dan portfolio'ya hafta hafta ne çalışılır, kontrol listesiyle.</div>
+      <div class="tool-tag">✦ Aktif</div>
+    </a>
+
+    <a href="english-roadmap.html" class="tool-card">
+      <div class="tool-icon">🇬🇧</div>
+      <div class="tool-name">İngilizce Yol Haritası</div>
+      <div class="tool-desc">B1'den C1'e kurs takipli plan. Rupert Walsh kursu ile haftalık program, ay ay kontrol listesi.</div>
+      <div class="tool-tag">✦ Aktif</div>
+    </a>
+
+    <div class="tool-card coming">
+      <div class="tool-icon">🇩🇪</div>
+      <div class="tool-name">Almanca Yol Haritası</div>
+      <div class="tool-desc">A2'den B1'e Almanca çalışma planı — yakında.</div>
+      <div class="coming-tag">Yakında</div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>Nevra Designs · 2025</span>
+  <span>nevradesigns.github.io/nevra-studio</span>
+</footer>
+
+</body>
+</html>
