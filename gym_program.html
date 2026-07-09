@@ -87,8 +87,53 @@
   .vid-link:hover{text-decoration:underline;}
   .vid-link svg{width:13px;height:13px;fill:var(--rose-deep);}
 
+  .video-modal{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);
+    z-index:999;align-items:center;justify-content:center;padding:20px;
+  }
+  .video-modal.open{display:flex;}
+  .video-modal-inner{
+    position:relative;width:100%;max-width:640px;
+    background:#000;border-radius:14px;overflow:hidden;
+  }
+  .video-modal-inner iframe{
+    width:100%;aspect-ratio:16/9;display:block;border:0;
+  }
+  .video-modal-close{
+    position:absolute;top:10px;right:10px;z-index:10;
+    background:rgba(0,0,0,.7);color:#fff;border:none;
+    width:36px;height:36px;border-radius:50%;font-size:20px;
+    cursor:pointer;
+  }
+
   .note{border-left:3px solid var(--sage);background:#F4F5EF;padding:14px 18px;border-radius:4px;font-size:14px;color:#4E5540;margin-bottom:28px;}
   .note strong{color:#3A4030;}
+
+  .week-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 20px;}
+  .week-nav button{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:var(--card);color:var(--rose-deep);font-size:16px;font-weight:700;
+    cursor:pointer;flex:0 0 auto;
+  }
+  .week-nav button:hover{background:var(--tag);}
+  #weekLabel{font-weight:700;font-size:15px;color:var(--ink);}
+
+  .history-row{
+    display:flex;align-items:center;justify-content:space-between;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;margin-bottom:10px;
+  }
+  .history-name{font-weight:600;font-size:14.5px;}
+  .history-count{
+    font-size:13px;font-weight:700;color:var(--rose-deep);
+    background:var(--tag);padding:3px 12px;border-radius:999px;
+  }
+  .history-empty{color:var(--ink-soft);font-size:14px;padding:10px 0;}
+  .history-total{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);
+  }
+  .history-total strong{font-family:'Fraunces',serif;font-size:20px;color:var(--ink);}
 
   footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px;text-align:center;}
 
@@ -132,29 +177,12 @@
     .tab{font-size:13px;padding:12px 4px 10px;}
     .card{flex-direction:column;}
   }
-  .video-modal{
-  display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);
-  z-index:999;align-items:center;justify-content:center;padding:20px;
-}
-.video-modal.open{display:flex;}
-.video-modal-inner{
-  position:relative;width:100%;max-width:640px;
-  background:#000;border-radius:14px;overflow:hidden;
-}
-.video-modal-inner iframe{
-  width:100%;aspect-ratio:16/9;display:block;border:0;
-}
-.video-modal-close{
-  position:absolute;top:10px;right:10px;z-index:10;
-  background:rgba(0,0,0,.7);color:#fff;border:none;
-  width:36px;height:36px;border-radius:50%;font-size:20px;
-  cursor:pointer;
-}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="video-modal" id="videoModal">
+
+<div class="video-modal" id="videoModal">
   <div class="video-modal-inner">
     <button class="video-modal-close" onclick="closeVideo()">✕</button>
     <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -171,6 +199,7 @@
     <div class="tab" data-day="3"><span class="tab-day">Gün 03</span>Full Body</div>
     <div class="tab" data-day="4"><span class="tab-day">Gün 04</span>Kısa</div>
     <div class="tab" data-day="5"><span class="tab-day">Alternatif</span>Üst Vücut</div>
+    <div class="tab" data-day="6"><span class="tab-day">📊</span>Geçmiş</div>
   </div>
 
   <div class="progress-row">
@@ -724,6 +753,25 @@
     </div>
   </div>
 
+  <!-- ================= GÜN 6 (GEÇMİŞ) ================= -->
+  <div class="day-page" data-day="6">
+    <div class="day-title-row"><div class="day-title">Geçmiş</div></div>
+    <div class="day-sub">Haftalık olarak hangi hareketi kaç kez yaptığını gör</div>
+
+    <div class="week-nav">
+      <button onclick="changeWeek(-1)">←</button>
+      <span id="weekLabel"></span>
+      <button onclick="changeWeek(1)">→</button>
+    </div>
+
+    <div class="history-total">
+      <span>Bu hafta toplam işaretlenen</span>
+      <strong id="weekTotal">0</strong>
+    </div>
+
+    <div id="historyList"></div>
+  </div>
+
   <footer>Hip thrust'ta 2 haftada bir ağırlık artışını takip et · Leg extension'ı sabit tut · Kalori açığı ile birlikte uygula</footer>
 </div>
 
@@ -747,25 +795,98 @@
       pages.forEach(p=>p.classList.remove('active'));
       tab.classList.add('active');
       document.querySelector('.day-page[data-day="'+tab.dataset.day+'"]').classList.add('active');
-      updateProgress();
+      const progressRow = document.querySelector('.progress-row');
+      if(tab.dataset.day === '6'){
+        progressRow.style.display = 'none';
+        renderHistory();
+      } else {
+        progressRow.style.display = 'flex';
+        updateProgress();
+      }
     });
   });
 
   document.querySelectorAll('[data-check]').forEach(chk=>{
     chk.addEventListener('click', ()=>{
-      chk.closest('.card').classList.toggle('done');
+      const card = chk.closest('.card');
+      card.classList.toggle('done');
+      const isDone = card.classList.contains('done');
+      const nameEl = card.querySelector('.ex-name');
+      if(nameEl){
+        logExercise(nameEl.textContent.trim(), isDone);
+      }
       updateProgress();
     });
   });
 
-  function openVideo(id){
-  document.getElementById('videoFrame').src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
-  document.getElementById('videoModal').classList.add('open');
-}
-function closeVideo(){
-  document.getElementById('videoModal').classList.remove('open');
-  document.getElementById('videoFrame').src = '';
-}
+  /* ===== Geçmiş / Log ===== */
+  let currentWeekOffset = 0;
+
+  function loadLog(){
+    try { return JSON.parse(localStorage.getItem('exerciseLog') || '[]'); }
+    catch(e){ return []; }
+  }
+  function saveLog(log){
+    try { localStorage.setItem('exerciseLog', JSON.stringify(log)); } catch(e){}
+  }
+  function todayStr(){
+    return new Date().toISOString().slice(0,10);
+  }
+  function logExercise(name, done){
+    let log = loadLog();
+    const today = todayStr();
+    if(done){
+      log.push({date: today, exercise: name});
+    } else {
+      const idx = log.findIndex(e => e.date === today && e.exercise === name);
+      if(idx > -1) log.splice(idx,1);
+    }
+    saveLog(log);
+  }
+  function getMonday(d){
+    d = new Date(d);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+  }
+  function formatDate(d){
+    return d.toLocaleDateString('tr-TR', {day:'numeric', month:'short'});
+  }
+  function changeWeek(delta){
+    currentWeekOffset += delta;
+    renderHistory();
+  }
+  function renderHistory(){
+    const log = loadLog();
+    const monday = getMonday(new Date());
+    monday.setDate(monday.getDate() + currentWeekOffset*7);
+    const sunday = new Date(monday);
+    sunday.setDate(sunday.getDate()+6);
+    const mondayStr = monday.toISOString().slice(0,10);
+    const sundayStr = sunday.toISOString().slice(0,10);
+
+    document.getElementById('weekLabel').textContent = formatDate(monday) + ' – ' + formatDate(sunday);
+
+    const weekEntries = log.filter(e => e.date >= mondayStr && e.date <= sundayStr);
+    const counts = {};
+    weekEntries.forEach(e => { counts[e.exercise] = (counts[e.exercise]||0)+1; });
+
+    document.getElementById('weekTotal').textContent = weekEntries.length;
+
+    const container = document.getElementById('historyList');
+    const names = Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
+    if(names.length===0){
+      container.innerHTML = '<p class="history-empty">Bu hafta henüz işaretlenmiş hareket yok.</p>';
+      return;
+    }
+    container.innerHTML = names.map(n => `
+      <div class="history-row">
+        <span class="history-name">${n}</span>
+        <span class="history-count">${counts[n]}×</span>
+      </div>
+    `).join('');
+  }
+
   updateProgress();
 </script>
 </body>
