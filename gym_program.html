@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kişisel Program</title>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Programım">
+<meta name="theme-color" content="#B4576A">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFgElEQVR4nO3dSXMbRRjG8ZZqvlssKQ5VHGPJC5ADW7hAwkdguxC2KhJZMsHcOGB5CV/LB198EIdxCS3zjDRSb9Pz/1UOlO1o+p1+9HbPjGJa93e3xpl/T7529+IwxjwafePuxVt2w/Hu+KXFV0NVe+NvLb6anXCQidhYScmu4SAWMdsxItuHg1jUxdYR2SYcN8SihjrVI9Ku+hdIRk1tMXHVwkEyaq3q9G26rNwcvdhqPIhR5+y7TX5so85BMhKz4YSu7xzXJCNR3XX9Y03nIBkJWzu5ZeEgGckrn2IZDpLRECUTnalvTN0MBTVSvCG9OvrK/1AQUO/s+9UvFoTj6pBkNFHvj+V8LO85SEZjrU595WcraI6FZeWSttF4j+cWFzoHpP/DQduAWYzB/H0Obm1gwcOeYzL4MvRIEJH9tz8Y9hwoQTggtQ1rClbkkaBzQMoMVykQ8ktZ4oECLCuQWn+//yz0GBCpjBUFCssKJMIBiXBAIhyQsik3OSBkZAMKywokwgGJm2CQ6ByQCAekjOf1UOgckLIpjQMCnQMS4YBEOCBxEwwSl7KQWFYg8cgeEp0DEhtSSHQOSIQDEpeykNhzQGJZgcR9Dkh0DkiEAxIbUkhcykKS/483/57+M1Lf+uu9E58j8SP+elvnT44DHr7kBCmRnLjt1Kve1p/7x0EOfHBR+TTNO39Ss4jUsd4A4djxNM2rRUTqW6/vS1mLZ8r6q7lQ63r9dQ6nhUXYQhKo11PncB352FpIGvW2p2bq+o+fSg4uRh5qaVS9zjtH/2Ls+hBBjhXDGFwfy204/M9W2HwkVm+Kj+zTq6ics3rbU2Mc/elPxq5GXao/GbsrqlH1ulpWBoHOVKijJ1kvn+eA1HbRkMK+jXKDydjbkpJqvXQOSPY3pIPJWeiiHgwmZx76RsL1pngpO+cwmpnzxOpssqxAIhyQLO85Di8b1sYjc3hpc9vBp8/TY21CWVYgEQ5IhAMSvxg/NRYnlM4BiXBA4lI2PfYuZe3eBBv1BrZGhi2MegOLs8myAolwQEr8kf2o63yZO7l+6/oQFUT+yN7DfGzIz0gSrjfl3wmWcGmFrNfr5APGp92+7XFWdtrtuyitUfWyIYXkKhxh30z+j55kvQ7/OeQw0PkadvuelpPU62VZgdR2+m4adny/mYadfoCmkWi9zjuHz/Plf27CjsH1sXwsK37OVwzJyCVTr4/fCTY10zedA6dlvOkcBP9VYOnV23q999RpGUs+ujm3+4Kup2FHta7X99WK3doiT4apeb2+O8fMjm+p+GOxpI71tn5/FCYcuWfvKp+y13s1i8W8etUbOBzzSk5crQOhxF9vROFAbPj0OSSerUBK+ZNg2BGdAxLhgJT4P03ALthzQOJSFhJ7DkiEAxLhgMSGFBKXspBYViBxKQuJPQcklhVIhAMS4YBEOCDxi/EhcSkLiWUFEuGAxE0wSHQOSIQDEo/sIdE5IGVTWgcEOgckwgGJcEBq3d/d/rb/YehhIDofT4Z0DkiZMTyXRbHMGEM6UIhlBVLr/u7WGPPr4w9CjwQR+eTy1NA5UIJwQHoIR95GADMXhmz2JT6GjiUPG9LcL72TgENBDD69Gs3+mz0HpIVwzKcGDbQUADoHpIU9R+5ndh6N9NnKulHQOVZ/CMkrnPTiZYV8NIqa7qzwq8Zw3wNFe46Zn7rHHkeCMD6/HqtvlV2tlPw1pKF8itdcypKPhK2d3PX3OchHkjaZ1o1ugpGPxGw4oWUb0lWv2KLW3PMq7/Nq4TDGvOocVRsOovH85qzSz1d+tlL1AIjEFhNXuXPM0ELqYuv38/bhyP1IRCL2xW5tftdw5IhIbHaMRc5OOGZISVhWMjFjORxLyIprdtOw5D+eaBRVVC30CwAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAFgElEQVR4nO3dSXMbRRjG8ZZqvlssKQ5VHGPJC5ADW7hAwkdguxC2KhJZMsHcOGB5CV/LB198EIdxCS3zjDRSb9Pz/1UOlO1o+p1+9HbPjGJa93e3xpl/T7529+IwxjwafePuxVt2w/Hu+KXFV0NVe+NvLb6anXCQidhYScmu4SAWMdsxItuHg1jUxdYR2SYcN8SihjrVI9Ku+hdIRk1tMXHVwkEyaq3q9G26rNwcvdhqPIhR5+y7TX5so85BMhKz4YSu7xzXJCNR3XX9Y03nIBkJWzu5ZeEgGckrn2IZDpLRECUTnalvTN0MBTVSvCG9OvrK/1AQUO/s+9UvFoTj6pBkNFHvj+V8LO85SEZjrU595WcraI6FZeWSttF4j+cWFzoHpP/DQduAWYzB/H0Obm1gwcOeYzL4MvRIEJH9tz8Y9hwoQTggtQ1rClbkkaBzQMoMVykQ8ktZ4oECLCuQWn+//yz0GBCpjBUFCssKJMIBiXBAIhyQsik3OSBkZAMKywokwgGJm2CQ6ByQCAekjOf1UOgckLIpjQMCnQMS4YBEOCBxEwwSl7KQWFYg8cgeEp0DEhtSSHQOSIQDEpeykNhzQGJZgcR9Dkh0DkiEAxIbUkhcykKS/483/57+M1Lf+uu9E58j8SP+elvnT44DHr7kBCmRnLjt1Kve1p/7x0EOfHBR+TTNO39Ss4jUsd4A4djxNM2rRUTqW6/vS1mLZ8r6q7lQ63r9dQ6nhUXYQhKo11PncB352FpIGvW2p2bq+o+fSg4uRh5qaVS9zjtH/2Ls+hBBjhXDGFwfy204/M9W2HwkVm+Kj+zTq6ics3rbU2Mc/elPxq5GXao/GbsrqlH1ulpWBoHOVKijJ1kvn+eA1HbRkMK+jXKDydjbkpJqvXQOSPY3pIPJWeiiHgwmZx76RsL1pngpO+cwmpnzxOpssqxAIhyQLO85Di8b1sYjc3hpc9vBp8/TY21CWVYgEQ5IhAMSvxg/NRYnlM4BiXBA4lI2PfYuZe3eBBv1BrZGhi2MegOLs8myAolwQEr8kf2o63yZO7l+6/oQFUT+yN7DfGzIz0gSrjfl3wmWcGmFrNfr5APGp92+7XFWdtrtuyitUfWyIYXkKhxh30z+j55kvQ7/OeQw0PkadvuelpPU62VZgdR2+m4adny/mYadfoCmkWi9zjuHz/Plf27CjsH1sXwsK37OVwzJyCVTr4/fCTY10zedA6dlvOkcBP9VYOnV23q999RpGUs+ujm3+4Kup2FHta7X99WK3doiT4apeb2+O8fMjm+p+GOxpI71tn5/FCYcuWfvKp+y13s1i8W8etUbOBzzSk5crQOhxF9vROFAbPj0OSSerUBK+ZNg2BGdAxLhgJT4P03ALthzQOJSFhJ7DkiEAxLhgMSGFBKXspBYViBxKQuJPQcklhVIhAMS4YBEOCDxi/EhcSkLiWUFEuGAxE0wSHQOSIQDEo/sIdE5IGVTWgcEOgckwgGJcEBq3d/d/rb/YehhIDofT4Z0DkiZMTyXRbHMGEM6UIhlBVLr/u7WGPPr4w9CjwQR+eTy1NA5UIJwQHoIR95GADMXhmz2JT6GjiUPG9LcL72TgENBDD69Gs3+mz0HpIVwzKcGDbQUADoHpIU9R+5ndh6N9NnKulHQOVZ/CMkrnPTiZYV8NIqa7qzwq8Zw3wNFe46Zn7rHHkeCMD6/HqtvlV2tlPw1pKF8itdcypKPhK2d3PX3OchHkjaZ1o1ugpGPxGw4oWUb0lWv2KLW3PMq7/Nq4TDGvOocVRsOovH85qzSz1d+tlL1AIjEFhNXuXPM0ELqYuv38/bhyP1IRCL2xW5tftdw5IhIbHaMRc5OOGZISVhWMjFjORxLyIprdtOw5D+eaBRVVC30CwAAAABJRU5ErkJggg==">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6F2; --card:#FFFFFF; --ink:#2C2420; --ink-soft:#6B5D56;
+    --rose:#B4576A; --rose-deep:#8C3F51; --sage:#7C8A6C; --sage-deep:#5C6650;
+    --line:#EAE0D8; --tag:#F3E4E0; --tag-sage:#E8ECDF; --done:#EFEAE5;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:760px;margin:0 auto;padding:44px 20px 100px;}
+
+  header{margin-bottom:32px;}
+  .eyebrow{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rose-deep);font-weight:600;margin-bottom:12px;}
+  h1{font-family:'Fraunces',serif;font-size:clamp(28px,6vw,40px);font-weight:600;margin:0 0 10px;line-height:1.1;letter-spacing:-0.01em;}
+  header p{max-width:56ch;color:var(--ink-soft);font-size:15.5px;margin:0;}
+
+  /* Tabs */
+  .tabs{display:flex;gap:8px;margin:28px 0 8px;border-bottom:1px solid var(--line);}
+  .tab{
+    flex:1;text-align:center;padding:14px 8px 12px;cursor:pointer;
+    font-weight:700;font-size:14.5px;color:var(--ink-soft);
+    border-bottom:3px solid transparent;transition:.15s;user-select:none;
+  }
+  .tab .tab-day{display:block;font-family:'Fraunces',serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);margin-bottom:2px;font-weight:700;}
+  .tab.active{color:var(--ink);border-bottom-color:var(--rose);}
+  .tab:not(.active):hover{color:var(--ink);}
+
+  .progress-row{display:flex;align-items:center;gap:10px;margin:18px 0 8px;}
+  .progress-bar{flex:1;height:6px;background:var(--tag);border-radius:99px;overflow:hidden;}
+  .progress-fill{height:100%;background:var(--rose);width:0%;transition:width .3s;}
+  .progress-label{font-size:12.5px;color:var(--ink-soft);font-weight:600;white-space:nowrap;}
+
+  .day-page{display:none;}
+  .day-page.active{display:block;}
+  .day-title-row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:22px 0 2px;}
+  .day-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;margin:0;}
+  .day-time{font-size:12.5px;font-weight:700;color:var(--rose-deep);background:var(--tag);padding:4px 12px;border-radius:999px;white-space:nowrap;}
+  .day-sub{color:var(--ink-soft);font-size:14px;margin:0 0 22px;}
+
+  .block-label{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);font-weight:700;margin:26px 0 12px;}
+  .block-label:first-of-type{margin-top:0;}
+
+  .card{
+    display:flex;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px;margin-bottom:12px;align-items:flex-start;
+    transition:background .2s,opacity .2s;
+  }
+  .card.done{background:var(--done);opacity:.6;}
+  .card.done .ex-name{text-decoration:line-through;}
+
+  .check{
+    flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:2px;
+    transition:.15s;background:#fff;
+  }
+  .check svg{width:15px;height:15px;opacity:0;transition:.15s;stroke:#fff;}
+  .card.done .check{background:var(--sage-deep);border-color:var(--sage-deep);}
+  .card.done .check svg{opacity:1;}
+
+  .icon{flex:0 0 auto;width:60px;height:60px;background:var(--tag);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .icon svg{width:36px;height:36px;stroke:var(--rose-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .icon.sage{background:var(--tag-sage);}
+  .icon.sage svg{stroke:var(--sage-deep);}
+
+  .card-body{flex:1;min-width:0;}
+  .card-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .ex-name{font-weight:700;font-size:16px;}
+  .ex-load{font-size:13px;font-weight:700;color:var(--rose-deep);background:var(--tag);padding:3px 10px;border-radius:999px;white-space:nowrap;}
+  .ex-tags{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;}
+  .muscle-tag{font-size:11.5px;font-weight:600;color:var(--sage-deep);background:var(--tag-sage);padding:2px 9px;border-radius:999px;}
+  .ex-cue{color:var(--ink-soft);font-size:13.5px;margin-top:8px;}
+  .vid-link{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:13px;font-weight:700;color:var(--rose-deep);text-decoration:none;}
+  .vid-link:hover{text-decoration:underline;}
+  .vid-link svg{width:13px;height:13px;fill:var(--rose-deep);}
+
+  .note{border-left:3px solid var(--sage);background:#F4F5EF;padding:14px 18px;border-radius:4px;font-size:14px;color:#4E5540;margin-bottom:28px;}
+  .note strong{color:#3A4030;}
+
+  footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px;text-align:center;}
+
+  /* ===== animations ===== */
+  @keyframes moveUpDown{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+  @keyframes moveDownUp{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+  @keyframes hinge{0%,100%{transform:rotate(0deg);}50%{transform:rotate(22deg);}}
+  @keyframes kickBack{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-30deg);}}
+  @keyframes curlLeg{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-65deg);}}
+  @keyframes extendLeg{0%,100%{transform:rotate(0deg);}50%{transform:rotate(55deg);}}
+  @keyframes abductRight{0%,100%{transform:rotate(0deg);}50%{transform:rotate(18deg);}}
+  @keyframes abductLeft{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-18deg);}}
+  @keyframes squatDown{0%,100%{transform:translateY(0);}50%{transform:translateY(5px) scaleY(.93);}}
+  @keyframes crunchUp{0%,100%{transform:rotate(0deg);}50%{transform:rotate(-16deg);}}
+  @keyframes twistSide{0%,100%{transform:rotate(0deg);}50%{transform:rotate(18deg);}}
+  @keyframes pulldownArms{0%,100%{transform:translateY(0);}50%{transform:translateY(7px);}}
+  @keyframes bikeLeg1{0%,50%,100%{transform:translate(0,0);}25%{transform:translate(-3px,-4px);}75%{transform:translate(3px,4px);}}
+  @keyframes breathe{0%,100%{opacity:1;}50%{opacity:.5;}}
+  @keyframes runCycle{0%,100%{transform:rotate(0deg) translateY(0);}50%{transform:rotate(-18deg) translateY(-2px);}}
+
+  .g-thrust{transform-origin:24px 22px;animation:moveUpDown 1.6s ease-in-out infinite;}
+  .g-hinge{transform-origin:24px 22px;animation:hinge 2s ease-in-out infinite;}
+  .g-kick{transform-origin:18px 26px;animation:kickBack 1.6s ease-in-out infinite;}
+  .g-curl{transform-origin:24px 26px;animation:curlLeg 1.6s ease-in-out infinite;}
+  .g-extend{transform-origin:24px 20px;animation:extendLeg 1.6s ease-in-out infinite;}
+  .g-abd-r{transform-origin:24px 26px;animation:abductRight 1.8s ease-in-out infinite;}
+  .g-abd-l{transform-origin:24px 26px;animation:abductLeft 1.8s ease-in-out infinite;}
+  .g-squat{transform-origin:24px 24px;animation:squatDown 1.8s ease-in-out infinite;}
+  .g-crunch{transform-origin:24px 30px;animation:crunchUp 1.4s ease-in-out infinite;}
+  .g-twist{transform-origin:24px 24px;animation:twistSide 1.6s ease-in-out infinite;}
+  .g-pull{transform-origin:24px 12px;animation:pulldownArms 1.4s ease-in-out infinite;}
+  .g-bridge{transform-origin:24px 30px;animation:moveUpDown 1.6s ease-in-out infinite;}
+  .g-breathe{animation:breathe 2.4s ease-in-out infinite;}
+  .g-run{transform-origin:24px 20px;animation:runCycle 0.8s ease-in-out infinite;}
+  @keyframes pressOut{0%,100%{transform:translateX(0);}50%{transform:translateX(5px);}}
+  @keyframes rowPull{0%,100%{transform:translateX(0);}50%{transform:translateX(-5px);}}
+  .g-press{transform-origin:24px 20px;animation:pressOut 1.4s ease-in-out infinite;}
+  .g-row{transform-origin:24px 20px;animation:rowPull 1.4s ease-in-out infinite;}
+
+  @media(max-width:480px){
+    .tab{font-size:13px;padding:12px 4px 10px;}
+    .card{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Kişisel Program</h1>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" data-day="1"><span class="tab-day">Gün 01</span>Kalça</div>
+    <div class="tab" data-day="2"><span class="tab-day">Gün 02</span>Arka Zincir</div>
+    <div class="tab" data-day="3"><span class="tab-day">Gün 03</span>Full Body</div>
+    <div class="tab" data-day="4"><span class="tab-day">Gün 04</span>Kısa</div>
+    <div class="tab" data-day="5"><span class="tab-day">Alternatif</span>Üst Vücut</div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="fill"></div></div>
+    <div class="progress-label" id="plabel">0/0 tamamlandı</div>
+  </div>
+
+  <!-- ================= GÜN 1 ================= -->
+  <div class="day-page active" data-day="1">
+    <div class="day-title-row"><div class="day-title">Kalça Odaklı + Karın</div><span class="day-time">~70 dk toplam</span></div>
+    <div class="day-sub">Molalar dahil tahmini sürelerle</div>
+
+    <div class="block-label">Isınma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Esneme (split + genel)</span><span class="ex-load">~20 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Sırt</span></div>
+        <p class="ex-cue">Split, kalça açıcı ve hamstring esnetmelerine ağırlık ver — bugün kalça çok çalışacak.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+opener+hamstring+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Kalça</div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><g class="g-thrust"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M14 24 Q24 30 34 24"/><path d="M18 24 L14 38"/><path d="M30 24 L34 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Sırtın bench üzerinde, kalçayı tavana it, üstte 1 sn sık. Setler arası ~75-90 sn dinlen. 2 haftada bir 2,5 kg artırmayı hedefle.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-l"><path d="M24 26 L14 40"/></g><g class="g-abd-r"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
+        <p class="ex-cue">Mevcut ağırlıkta kal, dizler dışa açılırken kalça kasını sık, hızlanma. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-r"><path d="M24 26 L14 40"/></g><g class="g-abd-l"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
+        <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap. Bacakları içe kapatırken kontrollü hareket et.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><circle cx="18" cy="10" r="4"/><path d="M18 14 L18 26"/><path d="M18 26 L12 34"/><g class="g-kick"><path d="M18 26 L30 24"/><path d="M30 24 L38 20"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Glute Kickback Makinesi</span><span class="ex-load">7-9 kg · 3×12/bacak · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Bacağı arkaya it, tepede sık; hareket kalçadan gelsin, sırt sabit kalsın. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=glute+kickback+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-squat"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 22"/><path d="M24 22 L14 36"/><path d="M24 22 L34 36"/><path d="M12 36 L16 30"/><path d="M36 36 L32 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Smith Machine Sumo Squat</span><span class="ex-load">Sadece bar (~15-20 kg) · 3×12 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">İç bacak</span></div>
+        <p class="ex-cue">Ayaklar geniş, parmaklar dışa, dizler ayak ucu yönünde. Smith bar sabit iz tuttuğu için formu korumak kolay. Setler arası ~60-75 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=smith+machine+sumo+squat+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Karın</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-crunch"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
+        <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×30 sn · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
+        <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Bitiş</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Koşu</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kondisyon</span></div>
+      </div>
+    </div>
+
+    <div class="block-label">Soğuma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Karın</span><span class="muscle-tag">Nefes</span></div>
+        <p class="ex-cue">Yavaş, statik esnetmeler ve derin nefesle bitir; nabzın yavaşça düşsün.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GÜN 2 ================= -->
+  <div class="day-page" data-day="2">
+    <div class="day-title-row"><div class="day-title">Arka Zincir (Hamstring/Kalça) + Karın</div><span class="day-time">~68 dk toplam</span></div>
+    <div class="day-sub">Molalar dahil tahmini sürelerle</div>
+
+    <div class="block-label">Isınma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Esneme (hamstring odaklı)</span><span class="ex-load">~20 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Alt sırt</span></div>
+        <p class="ex-cue">Bugün RDL ve leg curl var — hamstring ve alt sırt esnetmesine biraz daha zaman ayır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hamstring+lower+back+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Kalça & Arka Bacak</div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><g class="g-hinge"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 22"/><path d="M24 22 L34 22"/><path d="M34 22 L40 18"/></g><path d="M24 22 L18 40"/></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Dambıl Romanian Deadlift</span><span class="ex-load">Çift dambıl 6-8 kg (elde) · 3×10 · ~6 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span></div>
+        <p class="ex-cue">Dambılları uyluk önünde tut, dizler hafif kırık, kalçayı geriye it, sırt düz kalsın, dambıllar bacağa yakın insin. 6-8 kg her elde kas gelişimi için yeterli zorlanma sağlar; 8-10 tekrarda son 2 tekrar zorlanmıyorsa 1 kg artır. Setler arası ~75-90 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><rect x="8" y="18" width="10" height="16" rx="2"/><path d="M18 22 L30 22"/><g class="g-curl" style="transform-origin:30px 22px;"><path d="M30 22 L38 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Oturarak Leg Curl Makinesi</span><span class="ex-load">12-16 kg · 3×12 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça (destekleyici)</span></div>
+        <p class="ex-cue">Makineye otur, bacaklarını aşağı doğru bük. Sessiz ve göz önünde olmayan bir hareket — kalabalık saatlerde rahat yapılır. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+leg+curl+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><g class="g-thrust"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M14 24 Q24 30 34 24"/><path d="M18 24 L14 38"/><path d="M30 24 L34 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Gün 1'deki gibi — ilerleme burada kritik. Setler arası ~75-90 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-bridge"><path d="M8 34 Q24 16 40 34"/><circle cx="10" cy="34" r="3"/><circle cx="38" cy="34" r="3"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Tek Bacak Glute Bridge</span><span class="ex-load">Ağırlıksız → 5-8 kg dambıl · 3×12/bacak · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Denge zorlarsa bacağı hafif bükük tut. Salon zemininde mat üzerinde yap. Setler arası ~45-60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=single+leg+glute+bridge+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Karın</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="14" r="4"/><g class="g-crunch"><path d="M24 18 L20 30 L28 30 Z"/></g><g class="g-run" style="transform-origin:16px 30px;"><path d="M16 34 L20 30"/></g><path d="M32 34 L28 30"/></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Bisiklet Crunch</span><span class="ex-load">3×15 · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (rectus + oblik)</span></div>
+        <p class="ex-cue">Dirseği karşı dize doğru getir, belini yerden kaldırma.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=bicycle+crunch+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-crunch"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
+        <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Bitiş</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Koşu</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kondisyon</span></div>
+      </div>
+    </div>
+
+    <div class="block-label">Soğuma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Nefes</span></div>
+        <p class="ex-cue">Yavaş statik esnetme ve derin nefesle bitir.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GÜN 3 ================= -->
+  <div class="day-page" data-day="3">
+    <div class="day-title-row"><div class="day-title">Full Body Kalça/Karın + Kondisyon</div><span class="day-time">~81 dk toplam</span></div>
+    <div class="day-sub">Molalar dahil tahmini sürelerle</div>
+
+    <div class="block-label">Isınma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Esneme (genel vücut)</span><span class="ex-load">~20 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span></div>
+        <p class="ex-cue">Full body gün olduğu için üst ve alt vücuda dengeli zaman ayır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Üst Vücut & Kalça</div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-pull"><path d="M14 16 L24 20 L34 16"/></g><path d="M24 26 L18 40"/><path d="M24 26 L30 40"/></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Lat Pulldown</span><span class="ex-load">20 kg · 3×10 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kol</span></div>
+        <p class="ex-cue">Bar'ı göğüs üstüne çek, omuzları aşağı-geri topla. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=lat+pulldown+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><g class="g-thrust"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M14 24 Q24 30 34 24"/><path d="M18 24 L14 38"/><path d="M30 24 L34 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Haftanın 3. tekrarı — form bozulmadan son tekrarlarda zorlan. Setler arası ~75-90 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-l"><path d="M24 26 L14 40"/></g><g class="g-abd-r"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
+        <p class="ex-cue">Rutin ağırlığında devam. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-r"><path d="M24 26 L14 40"/></g><g class="g-abd-l"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
+        <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><rect x="10" y="10" width="28" height="6" rx="3"/><path d="M18 16 L14 38"/><g class="g-extend"><path d="M30 16 L34 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Leg Extension</span><span class="ex-load">15 kg (sabit tut) · 3×12 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Quad (sabit tutulan bölge)</span></div>
+        <p class="ex-cue">Ağırlığı artırma, forma odaklan. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=leg+extension+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Karın</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×40 sn · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
+        <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-twist"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M14 30 L24 24 L34 30"/></g><path d="M24 24 L18 40"/><path d="M24 24 L30 40"/></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Russian Twist</span><span class="ex-load">3×15 · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (oblik)</span></div>
+        <p class="ex-cue">Ayakları kaldırmak zor gelirse yerde bırak, üst gövde dönüşüne odaklan.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=russian+twist+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-crunch"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
+        <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Bitiş — Kondisyon Günü</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Koşu</span><span class="ex-load">~15-20 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kondisyon</span></div>
+        <p class="ex-cue">Bu gün biraz uzun — kalori açığına katkı için.</p>
+      </div>
+    </div>
+
+    <div class="block-label">Soğuma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Tüm vücut</span><span class="muscle-tag">Nefes</span></div>
+        <p class="ex-cue">Yavaş statik esnetme ve derin nefesle bitir.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GÜN 4 ================= -->
+  <div class="day-page" data-day="4">
+    <div class="day-title-row"><div class="day-title">Kalça & Bacak (Kısa)</div><span class="day-time">~44 dk toplam</span></div>
+    <div class="day-sub">Molalar dahil tahmini sürelerle</div>
+
+    <div class="block-label">Isınma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Esneme (kalça + bacak)</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span></div>
+        <p class="ex-cue">Kısa ama etkili — kalça açıcı ve bacak esnetmesine odaklan.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+opener+leg+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Kalça & Bacak</div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><g class="g-thrust"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M14 24 Q24 30 34 24"/><path d="M18 24 L14 38"/><path d="M30 24 L34 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
+        <p class="ex-cue">Haftanın 4. kez tekrarı — ilerleme fırsatı burada da geçerli. Setler arası ~75-90 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-squat"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 22"/><path d="M24 22 L14 36"/><path d="M24 22 L34 36"/><path d="M12 36 L16 30"/><path d="M36 36 L32 30"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Leg Press (geniş duruş)</span><span class="ex-load">Sürgü hariç 20-25 kg · 3×12 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">İç bacak</span></div>
+        <p class="ex-cue">Ayaklar plakanın üst kısmında ve geniş, parmaklar hafif dışa. Bu duruş quad yerine kalçayı öne çıkarır. Setler arası ~60-75 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=wide+stance+leg+press+glutes+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-l"><path d="M24 26 L14 40"/></g><g class="g-abd-r"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
+        <p class="ex-cue">Mevcut ağırlıkta kal, dizler dışa açılırken kalça kasını sık. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-abd-r"><path d="M24 26 L14 40"/></g><g class="g-abd-l"><path d="M24 26 L34 40"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
+        <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Bitiş</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Koşu</span><span class="ex-load">~10 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kondisyon</span></div>
+      </div>
+    </div>
+
+    <div class="block-label">Soğuma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span><span class="muscle-tag">Nefes</span></div>
+        <p class="ex-cue">Kısa gün olduğu için hızlı bir statik esnetme yeterli.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= GÜN 5 (ALTERNATİF) ================= -->
+  <div class="day-page" data-day="5">
+    <div class="day-title-row"><div class="day-title">Üst Vücut + Karın (Kısa)</div><span class="day-time">~36 dk toplam</span></div>
+    <div class="day-sub">Alt vücut çok yorgun olduğunda, kalça/bacak günü yerine bunu yap</div>
+
+    <div class="block-label">Isınma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 26"/><path d="M14 18 L24 20 L34 18"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Kol/Omuz Çevirme + Hafif Yürüyüş</span><span class="ex-load">~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Isınma</span></div>
+        <p class="ex-cue">Omuzları ısıtmak için kol çevirmeler yeterli, uzun ısınmaya gerek yok.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=upper+body+warm+up+arm+circles" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Üst Vücut</div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 26"/><g class="g-pull"><path d="M14 16 L24 20 L34 16"/></g><path d="M24 26 L18 40"/><path d="M24 26 L30 40"/></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Lat Pulldown</span><span class="ex-load">20 kg · 3×10 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kol</span></div>
+        <p class="ex-cue">Bar'ı göğüs üstüne çek, omuzları aşağı-geri topla. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=lat+pulldown+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><rect x="16" y="14" width="16" height="14" rx="3"/><g class="g-press"><path d="M32 18 L40 18"/><path d="M32 24 L40 24"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Seated Chest Press Makinesi</span><span class="ex-load">15-18 kg · 3×10 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Göğüs</span><span class="muscle-tag">Arka kol (triceps)</span></div>
+        <p class="ex-cue">Sırtın koltuğa yaslı, kolları öne doğru it, dirsekleri tam kilitleme. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+chest+press+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><rect x="16" y="14" width="16" height="14" rx="3"/><g class="g-row"><path d="M32 18 L40 18"/><path d="M32 24 L40 24"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Seated Cable Row Makinesi</span><span class="ex-load">20-25 kg · 3×10 · ~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Duruş</span></div>
+        <p class="ex-cue">Kabloyu karnına doğru çek, dirsekleri geriye it, omuz kürek kemiklerini birbirine yaklaştır. Setler arası ~60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+cable+row+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><circle cx="24" cy="8" r="4"/><path d="M24 12 L24 22"/><g class="g-pull"><path d="M18 16 L24 18 L30 16"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Kablo Triceps Pushdown</span><span class="ex-load">7-9 kg · 3×12 · ~4 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Arka kol (triceps)</span></div>
+        <p class="ex-cue">Dirsekleri gövdene yapışık tut, sadece ön kolları aşağı it. Setler arası ~45-60 sn.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=triceps+pushdown+cable+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Karın</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-crunch"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
+        <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×30 sn · ~3 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
+        <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+
+    <div class="block-label">Soğuma</div>
+    <div class="card" data-ex>
+      <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
+      <div class="card-body">
+        <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~5 dk</span></div>
+        <div class="ex-tags"><span class="muscle-tag">Üst vücut</span><span class="muscle-tag">Nefes</span></div>
+        <p class="ex-cue">Omuz ve göğüs esnetmesiyle bitir.</p>
+        <a class="vid-link" href="https://www.youtube.com/results?search_query=upper+body+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>Hip thrust'ta 2 haftada bir ağırlık artışını takip et · Leg extension'ı sabit tut · Kalori açığı ile birlikte uygula</footer>
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const pages = document.querySelectorAll('.day-page');
+
+  function updateProgress(){
+    const active = document.querySelector('.day-page.active');
+    const cards = active.querySelectorAll('.card[data-ex]');
+    const done = active.querySelectorAll('.card[data-ex].done');
+    const total = cards.length;
+    const n = done.length;
+    document.getElementById('fill').style.width = total ? (n/total*100)+'%' : '0%';
+    document.getElementById('plabel').textContent = n+'/'+total+' tamamlandı';
+  }
+
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      pages.forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.day-page[data-day="'+tab.dataset.day+'"]').classList.add('active');
+      updateProgress();
+    });
+  });
+
+  document.querySelectorAll('[data-check]').forEach(chk=>{
+    chk.addEventListener('click', ()=>{
+      chk.closest('.card').classList.toggle('done');
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+</script>
+</body>
+</html>
