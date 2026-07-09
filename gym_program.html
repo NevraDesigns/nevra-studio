@@ -83,7 +83,7 @@
   .ex-tags{display:flex;gap:6px;margin-top:7px;flex-wrap:wrap;}
   .muscle-tag{font-size:11.5px;font-weight:600;color:var(--sage-deep);background:var(--tag-sage);padding:2px 9px;border-radius:999px;}
   .ex-cue{color:var(--ink-soft);font-size:13.5px;margin-top:8px;}
-  .vid-link{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:13px;font-weight:700;color:var(--rose-deep);text-decoration:none;}
+  .vid-link{display:inline-flex;align-items:center;gap:5px;margin-top:9px;font-size:13px;font-weight:700;color:var(--rose-deep);text-decoration:none;background:none;border:none;cursor:pointer;padding:0;font-family:inherit;}
   .vid-link:hover{text-decoration:underline;}
   .vid-link svg{width:13px;height:13px;fill:var(--rose-deep);}
 
@@ -132,10 +132,34 @@
     .tab{font-size:13px;padding:12px 4px 10px;}
     .card{flex-direction:column;}
   }
+  .video-modal{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);
+  z-index:999;align-items:center;justify-content:center;padding:20px;
+}
+.video-modal.open{display:flex;}
+.video-modal-inner{
+  position:relative;width:100%;max-width:640px;
+  background:#000;border-radius:14px;overflow:hidden;
+}
+.video-modal-inner iframe{
+  width:100%;aspect-ratio:16/9;display:block;border:0;
+}
+.video-modal-close{
+  position:absolute;top:-42px;right:0;
+  background:rgba(255,255,255,.15);color:#fff;border:none;
+  width:34px;height:34px;border-radius:50%;font-size:18px;
+  cursor:pointer;
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="video-modal" id="videoModal">
+  <div class="video-modal-inner">
+    <button class="video-modal-close" onclick="closeVideo()">✕</button>
+    <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  </div>
+</div>
 
   <header>
     <h1>Kişisel Program</h1>
@@ -167,7 +191,7 @@
         <div class="card-top"><span class="ex-name">Esneme (split + genel)</span><span class="ex-load">~20 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Sırt</span></div>
         <p class="ex-cue">Split, kalça açıcı ve hamstring esnetmelerine ağırlık ver — bugün kalça çok çalışacak.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+opener+hamstring+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('UIRTPXj1Q1U')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -180,7 +204,7 @@
         <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Sırtın bench üzerinde, kalçayı tavana it, üstte 1 sn sık. Setler arası ~75-90 sn dinlen. 2 haftada bir 2,5 kg artırmayı hedefle.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('z8WwUC_UA4w')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -191,7 +215,7 @@
         <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
         <p class="ex-cue">Mevcut ağırlıkta kal, dizler dışa açılırken kalça kasını sık, hızlanma. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -202,7 +226,7 @@
         <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
         <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap. Bacakları içe kapatırken kontrollü hareket et.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -213,7 +237,7 @@
         <div class="card-top"><span class="ex-name">Glute Kickback Makinesi</span><span class="ex-load">7-9 kg · 3×12/bacak · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Bacağı arkaya it, tepede sık; hareket kalçadan gelsin, sırt sabit kalsın. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=glute+kickback+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('kSDdn8uCRy4')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -224,7 +248,7 @@
         <div class="card-top"><span class="ex-name">Smith Machine Sumo Squat</span><span class="ex-load">Sadece bar (~15-20 kg) · 3×12 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">İç bacak</span></div>
         <p class="ex-cue">Ayaklar geniş, parmaklar dışa, dizler ayak ucu yönünde. Smith bar sabit iz tuttuğu için formu korumak kolay. Setler arası ~60-75 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=smith+machine+sumo+squat+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('3U7qpAfEba0')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -236,7 +260,7 @@
         <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
         <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('pCX65Mtc_Kk')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -247,7 +271,7 @@
         <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×30 sn · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
         <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('mwlp75MS6Rg')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -269,7 +293,7 @@
         <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Karın</span><span class="muscle-tag">Nefes</span></div>
         <p class="ex-cue">Yavaş, statik esnetmeler ve derin nefesle bitir; nabzın yavaşça düşsün.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
   </div>
@@ -287,7 +311,7 @@
         <div class="card-top"><span class="ex-name">Esneme (hamstring odaklı)</span><span class="ex-load">~20 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Alt sırt</span></div>
         <p class="ex-cue">Bugün RDL ve leg curl var — hamstring ve alt sırt esnetmesine biraz daha zaman ayır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hamstring+lower+back+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('UIRTPXj1Q1U')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -300,7 +324,7 @@
         <div class="card-top"><span class="ex-name">Dambıl Romanian Deadlift</span><span class="ex-load">Çift dambıl 6-8 kg (elde) · 3×10 · ~6 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span></div>
         <p class="ex-cue">Dambılları uyluk önünde tut, dizler hafif kırık, kalçayı geriye it, sırt düz kalsın, dambıllar bacağa yakın insin. 6-8 kg her elde kas gelişimi için yeterli zorlanma sağlar; 8-10 tekrarda son 2 tekrar zorlanmıyorsa 1 kg artır. Setler arası ~75-90 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('aa57T45iFSE')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -311,7 +335,7 @@
         <div class="card-top"><span class="ex-name">Oturarak Leg Curl Makinesi</span><span class="ex-load">12-16 kg · 3×12 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça (destekleyici)</span></div>
         <p class="ex-cue">Makineye otur, bacaklarını aşağı doğru bük. Sessiz ve göz önünde olmayan bir hareket — kalabalık saatlerde rahat yapılır. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+leg+curl+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('fK0uZ3KRZRI')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -322,7 +346,7 @@
         <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Gün 1'deki gibi — ilerleme burada kritik. Setler arası ~75-90 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('z8WwUC_UA4w')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -333,7 +357,7 @@
         <div class="card-top"><span class="ex-name">Tek Bacak Glute Bridge</span><span class="ex-load">Ağırlıksız → 5-8 kg dambıl · 3×12/bacak · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Denge zorlarsa bacağı hafif bükük tut. Salon zemininde mat üzerinde yap. Setler arası ~45-60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=single+leg+glute+bridge+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('18GVqjfHy-M')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -345,7 +369,7 @@
         <div class="card-top"><span class="ex-name">Bisiklet Crunch</span><span class="ex-load">3×15 · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (rectus + oblik)</span></div>
         <p class="ex-cue">Dirseği karşı dize doğru getir, belini yerden kaldırma.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=bicycle+crunch+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('wpRI3xBhJmo')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -356,7 +380,7 @@
         <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
         <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('pCX65Mtc_Kk')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -378,7 +402,7 @@
         <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Hamstring</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Nefes</span></div>
         <p class="ex-cue">Yavaş statik esnetme ve derin nefesle bitir.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
   </div>
@@ -396,7 +420,7 @@
         <div class="card-top"><span class="ex-name">Esneme (genel vücut)</span><span class="ex-load">~20 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span></div>
         <p class="ex-cue">Full body gün olduğu için üst ve alt vücuda dengeli zaman ayır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=full+body+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -409,7 +433,7 @@
         <div class="card-top"><span class="ex-name">Lat Pulldown</span><span class="ex-load">20 kg · 3×10 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kol</span></div>
         <p class="ex-cue">Bar'ı göğüs üstüne çek, omuzları aşağı-geri topla. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=lat+pulldown+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('CAwf7n6Luuc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -420,7 +444,7 @@
         <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Haftanın 3. tekrarı — form bozulmadan son tekrarlarda zorlan. Setler arası ~75-90 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('z8WwUC_UA4w')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -431,7 +455,7 @@
         <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
         <p class="ex-cue">Rutin ağırlığında devam. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -442,7 +466,7 @@
         <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
         <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -453,7 +477,7 @@
         <div class="card-top"><span class="ex-name">Leg Extension</span><span class="ex-load">15 kg (sabit tut) · 3×12 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Quad (sabit tutulan bölge)</span></div>
         <p class="ex-cue">Ağırlığı artırma, forma odaklan. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=leg+extension+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('tTbJBUKnWU8')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -465,7 +489,7 @@
         <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×40 sn · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
         <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('mwlp75MS6Rg')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -476,7 +500,7 @@
         <div class="card-top"><span class="ex-name">Russian Twist</span><span class="ex-load">3×15 · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (oblik)</span></div>
         <p class="ex-cue">Ayakları kaldırmak zor gelirse yerde bırak, üst gövde dönüşüne odaklan.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=russian+twist+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('fPxO-FA8acM')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -487,7 +511,7 @@
         <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
         <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('pCX65Mtc_Kk')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -510,7 +534,7 @@
         <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~10 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Tüm vücut</span><span class="muscle-tag">Nefes</span></div>
         <p class="ex-cue">Yavaş statik esnetme ve derin nefesle bitir.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
   </div>
@@ -528,7 +552,7 @@
         <div class="card-top"><span class="ex-name">Esneme (kalça + bacak)</span><span class="ex-load">~10 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span></div>
         <p class="ex-cue">Kısa ama etkili — kalça açıcı ve bacak esnetmesine odaklan.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+opener+leg+stretch+routine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('UIRTPXj1Q1U')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -541,7 +565,7 @@
         <div class="card-top"><span class="ex-name">Hip Thrust</span><span class="ex-load">5 kg · 3×10-12 · ~6 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça (gluteus)</span></div>
         <p class="ex-cue">Haftanın 4. kez tekrarı — ilerleme fırsatı burada da geçerli. Setler arası ~75-90 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+thrust+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('z8WwUC_UA4w')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -552,7 +576,7 @@
         <div class="card-top"><span class="ex-name">Leg Press (geniş duruş)</span><span class="ex-load">Sürgü hariç 20-25 kg · 3×12 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">İç bacak</span></div>
         <p class="ex-cue">Ayaklar plakanın üst kısmında ve geniş, parmaklar hafif dışa. Bu duruş quad yerine kalçayı öne çıkarır. Setler arası ~60-75 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=wide+stance+leg+press+glutes+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('M_xoJ0iRLFc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -563,7 +587,7 @@
         <div class="card-top"><span class="ex-name">Hip Abduction Makinesi (kalça)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça yanı (gluteus medius)</span></div>
         <p class="ex-cue">Mevcut ağırlıkta kal, dizler dışa açılırken kalça kasını sık. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+abduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -574,7 +598,7 @@
         <div class="card-top"><span class="ex-name">Hip Adduction Makinesi (iç bacak)</span><span class="ex-load">35-40 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">İç bacak (adductor)</span></div>
         <p class="ex-cue">Abduction'ın hemen ardından arka arkaya yap.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=hip+adduction+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('h9BqUMqK-SY')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -596,7 +620,7 @@
         <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Kalça</span><span class="muscle-tag">Bacak</span><span class="muscle-tag">Nefes</span></div>
         <p class="ex-cue">Kısa gün olduğu için hızlı bir statik esnetme yeterli.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=post+workout+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
   </div>
@@ -614,7 +638,7 @@
         <div class="card-top"><span class="ex-name">Kol/Omuz Çevirme + Hafif Yürüyüş</span><span class="ex-load">~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Isınma</span></div>
         <p class="ex-cue">Omuzları ısıtmak için kol çevirmeler yeterli, uzun ısınmaya gerek yok.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=upper+body+warm+up+arm+circles" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('mwDgFY86zck')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -627,7 +651,7 @@
         <div class="card-top"><span class="ex-name">Lat Pulldown</span><span class="ex-load">20 kg · 3×10 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Kol</span></div>
         <p class="ex-cue">Bar'ı göğüs üstüne çek, omuzları aşağı-geri topla. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=lat+pulldown+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('CAwf7n6Luuc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -638,7 +662,7 @@
         <div class="card-top"><span class="ex-name">Seated Chest Press Makinesi</span><span class="ex-load">15-18 kg · 3×10 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Göğüs</span><span class="muscle-tag">Arka kol (triceps)</span></div>
         <p class="ex-cue">Sırtın koltuğa yaslı, kolları öne doğru it, dirsekleri tam kilitleme. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+chest+press+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('sqNwDkUU_Ps')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -649,7 +673,7 @@
         <div class="card-top"><span class="ex-name">Seated Cable Row Makinesi</span><span class="ex-load">20-25 kg · 3×10 · ~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Sırt</span><span class="muscle-tag">Duruş</span></div>
         <p class="ex-cue">Kabloyu karnına doğru çek, dirsekleri geriye it, omuz kürek kemiklerini birbirine yaklaştır. Setler arası ~60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=seated+cable+row+machine+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('vwHG9Jfu4sw')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -660,7 +684,7 @@
         <div class="card-top"><span class="ex-name">Kablo Triceps Pushdown</span><span class="ex-load">7-9 kg · 3×12 · ~4 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Arka kol (triceps)</span></div>
         <p class="ex-cue">Dirsekleri gövdene yapışık tut, sadece ön kolları aşağı it. Setler arası ~45-60 sn.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=triceps+pushdown+cable+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('-zLyUAo1gMw')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -672,7 +696,7 @@
         <div class="card-top"><span class="ex-name">Mekik</span><span class="ex-load">15-20 tekrar · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Karın (rectus)</span></div>
         <p class="ex-cue">Belini kaldırma, sadece omuzları kaldır.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=sit+up+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('pCX65Mtc_Kk')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -683,7 +707,7 @@
         <div class="card-top"><span class="ex-name">Plank</span><span class="ex-load">3×30 sn · ~3 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Core</span><span class="muscle-tag">Karın</span></div>
         <p class="ex-cue">Kalça düşmesin, vücut düz çizgi olsun.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=plank+form" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('mwlp75MS6Rg')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
 
@@ -695,7 +719,7 @@
         <div class="card-top"><span class="ex-name">Soğuma Esnetmesi</span><span class="ex-load">~5 dk</span></div>
         <div class="ex-tags"><span class="muscle-tag">Üst vücut</span><span class="muscle-tag">Nefes</span></div>
         <p class="ex-cue">Omuz ve göğüs esnetmesiyle bitir.</p>
-        <a class="vid-link" href="https://www.youtube.com/results?search_query=upper+body+cool+down+stretch" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</a>
+        <button type="button" class="vid-link" onclick="openVideo('IlHgLYdt3kc')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Video izle</button>
       </div>
     </div>
   </div>
@@ -734,6 +758,14 @@
     });
   });
 
+  function openVideo(id){
+  document.getElementById('videoFrame').src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';
+  document.getElementById('videoModal').classList.add('open');
+}
+function closeVideo(){
+  document.getElementById('videoModal').classList.remove('open');
+  document.getElementById('videoFrame').src = '';
+}
   updateProgress();
 </script>
 </body>
