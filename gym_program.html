@@ -62,14 +62,26 @@
   .card.done{background:var(--done);opacity:.6;}
   .card.done .ex-name{text-decoration:line-through;}
 
-  .check{
-    flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);
-    display:flex;align-items:center;justify-content:center;cursor:pointer;margin-top:2px;
+  .check{display:none;}
+  .card[data-simple] .check{
+    display:flex;flex:0 0 auto;width:26px;height:26px;border-radius:8px;border:2px solid var(--line);
+    align-items:center;justify-content:center;cursor:pointer;margin-top:2px;
     transition:.15s;background:#fff;
   }
-  .check svg{width:15px;height:15px;opacity:0;transition:.15s;stroke:#fff;}
-  .card.done .check{background:var(--sage-deep);border-color:var(--sage-deep);}
-  .card.done .check svg{opacity:1;}
+  .card[data-simple] .check svg{width:15px;height:15px;opacity:0;transition:.15s;stroke:#fff;}
+  .card[data-simple].done .check{background:var(--sage-deep);border-color:var(--sage-deep);}
+  .card[data-simple].done .check svg{opacity:1;}
+
+  .log-box{display:flex;align-items:center;gap:8px;margin-top:10px;cursor:default;}
+  .log-input{
+    border:1px solid var(--line);border-radius:8px;padding:7px 10px;
+    font-family:inherit;font-size:13.5px;color:var(--ink);background:#fff;
+    width:64px;text-align:center;
+  }
+  .log-input::placeholder{color:#B7A9A0;}
+  .log-input:disabled{background:var(--done);color:var(--sage-deep);border-color:var(--line);font-weight:700;}
+  .log-x{color:var(--ink-soft);font-size:13px;}
+  .card.done .log-box{cursor:pointer;}
 
   .icon{flex:0 0 auto;width:60px;height:60px;background:var(--tag);border-radius:12px;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .icon svg{width:36px;height:36px;stroke:var(--rose-deep);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
@@ -109,31 +121,86 @@
   .note{border-left:3px solid var(--sage);background:#F4F5EF;padding:14px 18px;border-radius:4px;font-size:14px;color:#4E5540;margin-bottom:28px;}
   .note strong{color:#3A4030;}
 
-  .week-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 20px;}
+  .week-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 0 24px;}
   .week-nav button{
     width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
     background:var(--card);color:var(--rose-deep);font-size:16px;font-weight:700;
     cursor:pointer;flex:0 0 auto;
   }
   .week-nav button:hover{background:var(--tag);}
-  #weekLabel{font-weight:700;font-size:15px;color:var(--ink);}
+  #weekLabel{font-weight:700;font-size:15px;color:var(--ink);text-align:center;flex:1;}
 
-  .history-row{
-    display:flex;align-items:center;justify-content:space-between;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;
+  .week-details{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
     padding:14px 16px;margin-bottom:10px;
   }
-  .history-name{font-weight:600;font-size:14.5px;}
+  .week-details summary{
+    font-weight:700;font-size:15px;cursor:pointer;list-style:none;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .week-details summary::-webkit-details-marker{display:none;}
+  .week-details summary::before{content:'▸';margin-right:8px;color:var(--rose-deep);}
+  .week-details[open] summary::before{content:'▾';}
+  .day-details{
+    margin:10px 0 0 18px;padding:10px 12px;background:var(--bg);
+    border-radius:10px;border:1px solid var(--line);
+  }
+  .day-details summary{
+    font-weight:600;font-size:13.5px;cursor:pointer;list-style:none;color:var(--ink);
+  }
+  .day-details summary::-webkit-details-marker{display:none;}
+  .day-details summary::before{content:'▸ ';color:var(--sage-deep);}
+  .day-details[open] summary::before{content:'▾ ';}
+  .day-exercise-list{margin:8px 0 2px;padding-left:20px;font-size:13.5px;color:var(--ink-soft);}
+  .day-exercise-list li{margin-bottom:4px;}
+
+  .log-date-row{
+    display:flex;align-items:center;gap:8px;margin:14px 0 4px;
+    font-size:13px;color:var(--ink-soft);font-weight:600;
+  }
+  .log-date-row input{
+    border:1px solid var(--line);border-radius:8px;padding:6px 10px;
+    font-family:inherit;font-size:13px;color:var(--ink);background:#fff;
+  }
+
+  .fab-calendar{
+    position:fixed;bottom:20px;right:20px;z-index:500;
+    width:52px;height:52px;border-radius:50%;
+    background:var(--rose);color:#fff;border:none;
+    font-size:22px;box-shadow:0 4px 14px rgba(0,0,0,.25);
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+  }
+  .calendar-modal{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);
+    z-index:999;align-items:center;justify-content:center;padding:20px;
+  }
+  .calendar-modal.open{display:flex;}
+  .calendar-modal-inner{
+    position:relative;width:100%;max-width:380px;
+    background:var(--card);border-radius:16px;padding:20px;
+  }
+  .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .cal-header button{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
+    background:#fff;color:var(--rose-deep);cursor:pointer;font-size:14px;
+  }
+  #calMonthLabel{font-weight:700;font-family:'Fraunces',serif;font-size:16px;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;}
+  .cal-weekday{font-size:11px;color:var(--ink-soft);font-weight:700;padding:4px 0;}
+  .cal-day{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    border-radius:50%;font-size:13px;cursor:pointer;color:var(--ink);
+  }
+  .cal-day.empty{visibility:hidden;cursor:default;}
+  .cal-day.has-log{background:var(--rose);color:#fff;font-weight:700;}
+  .cal-day.today{border:2px solid var(--sage-deep);}
+  #calDayDetail{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:13.5px;}
+  #calDayDetail ul{margin:6px 0 0;padding-left:18px;}
   .history-count{
-    font-size:13px;font-weight:700;color:var(--rose-deep);
-    background:var(--tag);padding:3px 12px;border-radius:999px;
+    font-size:12px;font-weight:700;color:var(--rose-deep);
+    background:var(--tag);padding:3px 10px;border-radius:999px;
   }
   .history-empty{color:var(--ink-soft);font-size:14px;padding:10px 0;}
-  .history-total{
-    display:flex;justify-content:space-between;align-items:baseline;
-    margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line);
-  }
-  .history-total strong{font-family:'Fraunces',serif;font-size:20px;color:var(--ink);}
 
   footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13px;text-align:center;}
 
@@ -189,6 +256,21 @@
   </div>
 </div>
 
+<div class="calendar-modal" id="calendarModal">
+  <div class="calendar-modal-inner">
+    <button class="video-modal-close" onclick="closeCalendar()">✕</button>
+    <div class="cal-header">
+      <button onclick="changeCalMonth(-1)">←</button>
+      <span id="calMonthLabel"></span>
+      <button onclick="changeCalMonth(1)">→</button>
+    </div>
+    <div class="cal-grid" id="calGrid"></div>
+    <div id="calDayDetail"></div>
+  </div>
+</div>
+
+<button class="fab-calendar" onclick="openCalendar()">📅</button>
+
   <header>
     <h1>Kişisel Program</h1>
   </header>
@@ -207,13 +289,18 @@
     <div class="progress-label" id="plabel">0/0 tamamlandı</div>
   </div>
 
+  <div class="log-date-row" id="logDateRow">
+    <label for="logDateInput">📅 Kayıt tarihi:</label>
+    <input type="date" id="logDateInput">
+  </div>
+
   <!-- ================= GÜN 1 ================= -->
   <div class="day-page active" data-day="1">
     <div class="day-title-row"><div class="day-title">Kalça Odaklı + Karın</div><span class="day-time">~70 dk toplam</span></div>
     <div class="day-sub">Molalar dahil tahmini sürelerle</div>
 
     <div class="block-label">Isınma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
       <div class="card-body">
@@ -305,7 +392,7 @@
     </div>
 
     <div class="block-label">Bitiş</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
       <div class="card-body">
@@ -315,7 +402,7 @@
     </div>
 
     <div class="block-label">Soğuma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
       <div class="card-body">
@@ -333,7 +420,7 @@
     <div class="day-sub">Molalar dahil tahmini sürelerle</div>
 
     <div class="block-label">Isınma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
       <div class="card-body">
@@ -414,7 +501,7 @@
     </div>
 
     <div class="block-label">Bitiş</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
       <div class="card-body">
@@ -424,7 +511,7 @@
     </div>
 
     <div class="block-label">Soğuma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
       <div class="card-body">
@@ -442,7 +529,7 @@
     <div class="day-sub">Molalar dahil tahmini sürelerle</div>
 
     <div class="block-label">Isınma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
       <div class="card-body">
@@ -545,7 +632,7 @@
     </div>
 
     <div class="block-label">Bitiş — Kondisyon Günü</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
       <div class="card-body">
@@ -556,7 +643,7 @@
     </div>
 
     <div class="block-label">Soğuma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
       <div class="card-body">
@@ -574,7 +661,7 @@
     <div class="day-sub">Molalar dahil tahmini sürelerle</div>
 
     <div class="block-label">Isınma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 24"/><path d="M24 24 L14 34"/><path d="M24 24 L34 20"/><path d="M14 34 L10 30"/></g></svg></div>
       <div class="card-body">
@@ -632,7 +719,7 @@
     </div>
 
     <div class="block-label">Bitiş</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-run"><circle cx="30" cy="10" r="4"/><path d="M30 14 L26 24 L34 28"/><path d="M26 24 L16 26"/><path d="M34 28 L38 38"/><path d="M26 24 L20 38"/></g></svg></div>
       <div class="card-body">
@@ -642,7 +729,7 @@
     </div>
 
     <div class="block-label">Soğuma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
       <div class="card-body">
@@ -660,7 +747,7 @@
     <div class="day-sub">Alt vücut çok yorgun olduğunda, kalça/bacak günü yerine bunu yap</div>
 
     <div class="block-label">Isınma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><circle cx="24" cy="10" r="4"/><path d="M24 14 L24 26"/><path d="M14 18 L24 20 L34 18"/></g></svg></div>
       <div class="card-body">
@@ -741,7 +828,7 @@
     </div>
 
     <div class="block-label">Soğuma</div>
-    <div class="card" data-ex>
+    <div class="card" data-ex data-simple>
       <div class="check" data-check><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" fill="none"><path d="M4 12l5 5L20 6"/></svg></div>
       <div class="icon sage"><svg viewBox="0 0 48 48"><g class="g-breathe"><rect x="8" y="20" width="32" height="8" rx="4"/></g></svg></div>
       <div class="card-body">
@@ -756,17 +843,12 @@
   <!-- ================= GÜN 6 (GEÇMİŞ) ================= -->
   <div class="day-page" data-day="6">
     <div class="day-title-row"><div class="day-title">Geçmiş</div></div>
-    <div class="day-sub">Haftalık olarak hangi hareketi kaç kez yaptığını gör</div>
+    <div class="day-sub">Hafta değiştirmek için oklara dokun ya da kaydır</div>
 
     <div class="week-nav">
       <button onclick="changeWeek(-1)">←</button>
       <span id="weekLabel"></span>
       <button onclick="changeWeek(1)">→</button>
-    </div>
-
-    <div class="history-total">
-      <span>Bu hafta toplam işaretlenen</span>
-      <strong id="weekTotal">0</strong>
     </div>
 
     <div id="historyList"></div>
@@ -789,6 +871,17 @@
     document.getElementById('plabel').textContent = n+'/'+total+' tamamlandı';
   }
 
+  const logDateInput = document.getElementById('logDateInput');
+  logDateInput.value = todayStr();
+
+  (function cleanupOldLog(){
+    const log = loadLog();
+    const cleaned = log.filter(e => e && e.weight !== undefined && e.reps !== undefined && e.weight !== '' && e.reps !== '');
+    if(cleaned.length !== log.length){
+      saveLog(cleaned);
+    }
+  })();
+
   tabs.forEach(tab=>{
     tab.addEventListener('click', ()=>{
       tabs.forEach(t=>t.classList.remove('active'));
@@ -796,32 +889,124 @@
       tab.classList.add('active');
       document.querySelector('.day-page[data-day="'+tab.dataset.day+'"]').classList.add('active');
       const progressRow = document.querySelector('.progress-row');
+      const logDateRow = document.getElementById('logDateRow');
       if(tab.dataset.day === '6'){
         progressRow.style.display = 'none';
+        logDateRow.style.display = 'none';
         renderHistory();
       } else {
         progressRow.style.display = 'flex';
+        logDateRow.style.display = 'flex';
         updateProgress();
       }
     });
   });
 
-  document.querySelectorAll('[data-check]').forEach(chk=>{
-    chk.addEventListener('click', ()=>{
-      const card = chk.closest('.card');
-      card.classList.toggle('done');
-      const isDone = card.classList.contains('done');
-      const nameEl = card.querySelector('.ex-name');
-      if(nameEl){
-        logExercise(nameEl.textContent.trim(), isDone);
+  document.querySelectorAll('.card[data-ex]').forEach(card=>{
+    const nameEl = card.querySelector('.ex-name');
+    const exerciseName = nameEl ? nameEl.textContent.trim() : '';
+    const isSimple = card.hasAttribute('data-simple');
+
+    if(isSimple){
+      const checkEl = card.querySelector('.check');
+      if(checkEl){
+        checkEl.addEventListener('click', ()=>{
+          const date = currentLogDate();
+          if(card.classList.contains('done')){
+            removeLogEntry(date, exerciseName);
+            card.classList.remove('done');
+          } else {
+            upsertLog(date, exerciseName, null, null);
+            card.classList.add('done');
+          }
+          updateProgress();
+        });
       }
+      card._refreshLog = function(){
+        const entry = findLogEntry(currentLogDate(), exerciseName);
+        if(entry){ card.classList.add('done'); }
+        else { card.classList.remove('done'); }
+      };
+      card._refreshLog();
+      return;
+    }
+
+    const cardBody = card.querySelector('.card-body');
+    if(!cardBody) return;
+
+    const logBox = document.createElement('div');
+    logBox.className = 'log-box';
+    logBox.innerHTML =
+      '<input type="text" class="log-input log-weight" placeholder="kg" inputmode="decimal">' +
+      '<span class="log-x">×</span>' +
+      '<input type="text" class="log-input log-reps" placeholder="12x3">';
+    cardBody.appendChild(logBox);
+
+    const weightInput = logBox.querySelector('.log-weight');
+    const repsInput = logBox.querySelector('.log-reps');
+
+    function lockCard(){
+      upsertLog(currentLogDate(), exerciseName, weightInput.value.trim(), repsInput.value.trim());
+      weightInput.disabled = true;
+      repsInput.disabled = true;
+      card.classList.add('done');
       updateProgress();
+    }
+    function unlockCard(){
+      removeLogEntry(currentLogDate(), exerciseName);
+      weightInput.value = '';
+      repsInput.value = '';
+      weightInput.disabled = false;
+      repsInput.disabled = false;
+      card.classList.remove('done');
+      updateProgress();
+    }
+    function tryLock(){
+      if(weightInput.value.trim() && repsInput.value.trim()){
+        lockCard();
+      }
+    }
+    weightInput.addEventListener('blur', tryLock);
+    repsInput.addEventListener('blur', tryLock);
+    weightInput.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); tryLock(); } });
+    repsInput.addEventListener('keydown', e=>{ if(e.key==='Enter'){ e.preventDefault(); tryLock(); } });
+
+    logBox.addEventListener('click', ()=>{
+      if(card.classList.contains('done')){
+        unlockCard();
+      }
     });
+
+    card._refreshLog = function(){
+      const entry = findLogEntry(currentLogDate(), exerciseName);
+      const valid = entry && entry.weight !== undefined && entry.reps !== undefined && entry.weight !== '' && entry.reps !== '';
+      if(valid){
+        weightInput.value = entry.weight;
+        repsInput.value = entry.reps;
+        weightInput.disabled = true;
+        repsInput.disabled = true;
+        card.classList.add('done');
+      } else {
+        if(entry){ removeLogEntry(currentLogDate(), exerciseName); }
+        weightInput.value = '';
+        repsInput.value = '';
+        weightInput.disabled = false;
+        repsInput.disabled = false;
+        card.classList.remove('done');
+      }
+    };
+    card._refreshLog();
   });
 
-  /* ===== Geçmiş / Log ===== */
-  let currentWeekOffset = 0;
+  logDateInput.addEventListener('change', refreshAllCards);
+  function refreshAllCards(){
+    document.querySelectorAll('.card[data-ex]').forEach(card=>{
+      if(card._refreshLog) card._refreshLog();
+    });
+    updateProgress();
+  }
 
+  /* ===== Log yardımcı fonksiyonları ===== */
   function loadLog(){
     try { return JSON.parse(localStorage.getItem('exerciseLog') || '[]'); }
     catch(e){ return []; }
@@ -832,16 +1017,24 @@
   function todayStr(){
     return new Date().toISOString().slice(0,10);
   }
-  function logExercise(name, done){
+  function currentLogDate(){
+    const input = document.getElementById('logDateInput');
+    return (input && input.value) ? input.value : todayStr();
+  }
+  function upsertLog(date, exercise, weight, reps){
     let log = loadLog();
-    const today = todayStr();
-    if(done){
-      log.push({date: today, exercise: name});
-    } else {
-      const idx = log.findIndex(e => e.date === today && e.exercise === name);
-      if(idx > -1) log.splice(idx,1);
-    }
+    const idx = log.findIndex(e => e.date===date && e.exercise===exercise);
+    if(idx > -1){ log[idx] = {date, exercise, weight, reps}; }
+    else { log.push({date, exercise, weight, reps}); }
     saveLog(log);
+  }
+  function removeLogEntry(date, exercise){
+    let log = loadLog();
+    const idx = log.findIndex(e => e.date===date && e.exercise===exercise);
+    if(idx > -1){ log.splice(idx,1); saveLog(log); }
+  }
+  function findLogEntry(date, exercise){
+    return loadLog().find(e => e.date===date && e.exercise===exercise);
   }
   function getMonday(d){
     d = new Date(d);
@@ -849,15 +1042,18 @@
     const diff = d.getDate() - day + (day === 0 ? -6 : 1);
     return new Date(d.setDate(diff));
   }
-  function formatDate(d){
-    return d.toLocaleDateString('tr-TR', {day:'numeric', month:'short'});
-  }
+
+  /* ===== Geçmiş: hafta hafta kaydırma, altında o haftanın günleri ===== */
+  let currentWeekOffset = 0;
+
   function changeWeek(delta){
     currentWeekOffset += delta;
     renderHistory();
   }
+
   function renderHistory(){
-    const log = loadLog();
+    const log = loadLog().filter(e => e.weight !== undefined && e.reps !== undefined && e.weight !== '' && e.reps !== '');
+
     const monday = getMonday(new Date());
     monday.setDate(monday.getDate() + currentWeekOffset*7);
     const sunday = new Date(monday);
@@ -865,26 +1061,100 @@
     const mondayStr = monday.toISOString().slice(0,10);
     const sundayStr = sunday.toISOString().slice(0,10);
 
-    document.getElementById('weekLabel').textContent = formatDate(monday) + ' – ' + formatDate(sunday);
+    document.getElementById('weekLabel').textContent =
+      monday.toLocaleDateString('tr-TR', {day:'numeric', month:'long', year:'numeric'}) + ' haftası';
 
     const weekEntries = log.filter(e => e.date >= mondayStr && e.date <= sundayStr);
-    const counts = {};
-    weekEntries.forEach(e => { counts[e.exercise] = (counts[e.exercise]||0)+1; });
-
-    document.getElementById('weekTotal').textContent = weekEntries.length;
+    const byDate = {};
+    weekEntries.forEach(e => { if(!byDate[e.date]) byDate[e.date] = []; byDate[e.date].push(e); });
 
     const container = document.getElementById('historyList');
-    const names = Object.keys(counts).sort((a,b)=>counts[b]-counts[a]);
-    if(names.length===0){
-      container.innerHTML = '<p class="history-empty">Bu hafta henüz işaretlenmiş hareket yok.</p>';
+    const dayKeys = Object.keys(byDate).sort();
+    if(dayKeys.length === 0){
+      container.innerHTML = '<p class="history-empty">Bu hafta henüz kayıt yok.</p>';
       return;
     }
-    container.innerHTML = names.map(n => `
-      <div class="history-row">
-        <span class="history-name">${n}</span>
-        <span class="history-count">${counts[n]}×</span>
-      </div>
-    `).join('');
+    container.innerHTML = dayKeys.map(dateStr => {
+      const d = new Date(dateStr+'T00:00:00');
+      const dayLabel = d.toLocaleDateString('tr-TR', {day:'numeric', month:'long', weekday:'long'});
+      const exList = byDate[dateStr].map(e => e.weight===null ? `<li>${e.exercise}</li>` : `<li>${e.exercise} — ${e.weight} kg, ${e.reps}</li>`).join('');
+      return `<details class="day-details">
+        <summary>${dayLabel}</summary>
+        <ul class="day-exercise-list">${exList}</ul>
+      </details>`;
+    }).join('');
+  }
+
+  (function setupSwipe(){
+    const historyPage = document.querySelector('.day-page[data-day="6"]');
+    let touchStartX = null;
+    historyPage.addEventListener('touchstart', e=>{ touchStartX = e.touches[0].clientX; });
+    historyPage.addEventListener('touchend', e=>{
+      if(touchStartX === null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if(Math.abs(dx) > 50){
+        if(dx < 0) changeWeek(1); else changeWeek(-1);
+      }
+      touchStartX = null;
+    });
+  })();
+
+  /* ===== Takvim ===== */
+  let calDate = new Date();
+
+  function openCalendar(){
+    document.getElementById('calendarModal').classList.add('open');
+    renderCalendar();
+  }
+  function closeCalendar(){
+    document.getElementById('calendarModal').classList.remove('open');
+  }
+  function changeCalMonth(delta){
+    calDate.setMonth(calDate.getMonth()+delta);
+    renderCalendar();
+  }
+  function renderCalendar(){
+    const log = loadLog();
+    const byDate = {};
+    log.forEach(e=>{ if(!byDate[e.date]) byDate[e.date]=[]; byDate[e.date].push(e.exercise); });
+
+    const year = calDate.getFullYear();
+    const month = calDate.getMonth();
+    document.getElementById('calMonthLabel').textContent =
+      calDate.toLocaleDateString('tr-TR', {month:'long', year:'numeric'});
+
+    const firstDay = new Date(year, month, 1);
+    let startOffset = firstDay.getDay();
+    startOffset = startOffset === 0 ? 6 : startOffset - 1;
+    const daysInMonth = new Date(year, month+1, 0).getDate();
+
+    const weekdayNames = ['Pt','Sa','Ça','Pe','Cu','Ct','Pz'];
+    let html = weekdayNames.map(w=>`<div class="cal-weekday">${w}</div>`).join('');
+
+    for(let i=0;i<startOffset;i++){
+      html += '<div class="cal-day empty"></div>';
+    }
+    const todayS = todayStr();
+    for(let day=1; day<=daysInMonth; day++){
+      const dateStr = year+'-'+String(month+1).padStart(2,'0')+'-'+String(day).padStart(2,'0');
+      const hasLog = !!byDate[dateStr];
+      const isToday = dateStr === todayS;
+      html += `<div class="cal-day ${hasLog?'has-log':''} ${isToday?'today':''}" onclick="showCalDay('${dateStr}')">${day}</div>`;
+    }
+    document.getElementById('calGrid').innerHTML = html;
+    document.getElementById('calDayDetail').innerHTML = '';
+  }
+  function showCalDay(dateStr){
+    const log = loadLog();
+    const entries = log.filter(e=>e.date===dateStr);
+    const d = new Date(dateStr+'T00:00:00');
+    const label = d.toLocaleDateString('tr-TR', {day:'numeric', month:'long', weekday:'long'});
+    const detail = document.getElementById('calDayDetail');
+    if(entries.length===0){
+      detail.innerHTML = `<strong>${label}</strong><p style="color:var(--ink-soft);margin-top:6px;">Bu gün kayıt yok.</p>`;
+    } else {
+      detail.innerHTML = `<strong>${label}</strong><ul>${entries.map(e=> e.weight===null ? `<li>${e.exercise}</li>` : `<li>${e.exercise} — ${e.weight} kg, ${e.reps}</li>`).join('')}</ul>`;
+    }
   }
 
   updateProgress();
